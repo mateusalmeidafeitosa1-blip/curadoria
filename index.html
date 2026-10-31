@@ -199,11 +199,63 @@ textarea.note{min-height:52px;margin-top:10px}
 .list td.nm{font-family:var(--serif);font-size:20px}
 .list .act{text-align:right;white-space:nowrap}
 
+/* Sala imersiva */
+.sala{display:grid;grid-template-columns:1.5fr 1fr;gap:18px;align-items:start}
+.sala .card{margin:0}
+.sala-bar{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;align-items:center;margin-bottom:14px}
+.legend{display:flex;gap:14px;font-size:12px;color:var(--muted)}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:-1px}
+.st-disponivel{--st:#2F7D5B}.st-reservada{--st:#C19A4B}.st-vendida{--st:#A3A097}
+.map{position:relative;border-radius:12px;overflow:hidden;background:#F4EEE2;user-select:none}
+.map.diagram{height:440px}
+.sea{position:absolute;left:0;right:0;top:0;height:64px;background:linear-gradient(180deg,#3E7F86,#7DB3AE);color:#fff;font-size:11px;letter-spacing:.24em;text-transform:uppercase;display:flex;align-items:center;justify-content:center}
+.sea::after{content:"";position:absolute;left:0;right:0;bottom:-8px;height:16px;background:radial-gradient(circle at 10px -2px,transparent 9px,#F4EEE2 10px) repeat-x;background-size:20px 16px}
+.tick{position:absolute;left:10px;font-size:10px;color:var(--muted);letter-spacing:.06em}
+.tick::after{content:"";position:absolute;left:44px;top:7px;width:2000px;border-top:1px dashed #E2DACA}
+.pin{position:absolute;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:4px;background:none;border:0;padding:0;z-index:2}
+.pin .dot{width:30px;height:30px;border-radius:50%;background:var(--st);border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.18);transition:transform .15s}
+.pin .lb{font-size:11px;background:rgba(255,253,248,.95);padding:2px 7px;border-radius:999px;white-space:nowrap;border:1px solid var(--line)}
+.pin:hover .dot{transform:scale(1.15)}
+.pin.sel .dot{transform:scale(1.25);box-shadow:0 0 0 4px rgba(46,74,59,.25),0 2px 8px rgba(0,0,0,.18)}
+.pin.fav .dot{outline:2px solid var(--sand);outline-offset:3px}
+.pin.dim{opacity:.25}
+.map img.planta{display:block;width:100%;height:auto}
+.map.placing{cursor:crosshair;outline:2px dashed var(--sand)}
+.unit-photo{aspect-ratio:16/10;border-radius:12px;background:linear-gradient(135deg,#5B8A87,#2E4A3B);background-size:cover;background-position:center;position:relative;margin-bottom:16px;overflow:hidden}
+.badge{display:inline-flex;align-items:center;gap:6px;font-size:10px;letter-spacing:.18em;text-transform:uppercase;padding:6px 10px;border-radius:999px;background:rgba(255,253,248,.94);color:var(--ink)}
+.badge i{width:8px;height:8px;border-radius:50%;background:var(--st)}
+.unit-photo .badge{position:absolute;left:12px;top:12px}
+.unit-photo .fav-b{position:absolute;right:12px;top:12px;background:var(--sand);color:#fff}
+.d-name{font-family:var(--serif);font-size:30px;font-weight:500;line-height:1.1;margin:0}
+.d-specs{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:6px}
+.sea-dist{margin:18px 0;padding:16px;border:1px solid var(--line);border-radius:12px;background:#FFFEFB}
+.sea-dist .big{font-family:var(--serif);font-size:38px;line-height:1;color:var(--accent)}
+.sea-dist .sm{font-size:13px;color:var(--muted);margin-top:4px}
+.sea-bar{height:6px;border-radius:6px;background:var(--line);margin-top:12px;overflow:hidden}
+.sea-bar i{display:block;height:100%;background:linear-gradient(90deg,#3E7F86,#7DB3AE)}
+.btn.big{padding:13px 22px;font-size:14px;width:100%}
+.unit-row{display:grid;grid-template-columns:14px 1fr auto;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid #D3DDD4}
+.unit-row:last-child{border-bottom:0}
+.unit-row .dt{width:12px;height:12px;border-radius:50%;background:var(--st)}
+.unit-row label{font-size:12px;color:var(--muted);display:inline-flex;gap:6px;align-items:center;margin-right:6px}
+select{border:0;background:transparent;padding:11px 4px;outline:none;font-size:15px;flex:1}
+.immersive{position:fixed;inset:0;z-index:50;background:#0d1511}
+.immersive #panoBox,.immersive iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.imm-top{position:absolute;left:0;right:0;top:0;padding:18px 22px;display:flex;justify-content:space-between;align-items:center;background:linear-gradient(180deg,rgba(0,0,0,.55),transparent);color:#fff;z-index:5;pointer-events:none}
+.imm-top .eyebrow{color:#E9D9B8}
+.imm-top .nm{font-family:var(--serif);font-size:28px;line-height:1.1}
+.imm-top button{pointer-events:auto;background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.4);border-radius:999px;padding:10px 18px;font-size:13px}
+.immersive .pnlm-controls-container{top:auto;bottom:24px;left:22px}
+.imm-photo{position:absolute;inset:0;background-size:cover;background-position:center;animation:kb 30s ease-in-out infinite alternate}
+@keyframes kb{from{transform:scale(1.05) translateX(-2%)}to{transform:scale(1.18) translateX(2%)}}
+.imm-note{position:absolute;left:50%;bottom:28px;transform:translateX(-50%);background:rgba(0,0,0,.55);color:#fff;font-size:13px;padding:10px 16px;border-radius:999px;z-index:5}
+
 /* Present mode */
 body.present .internal, body.present .star, body.present .hint, body.present .only-internal{display:none!important}
 
 @media (max-width:720px){
-  .region-grid,.products,.grid2,.stats{grid-template-columns:1fr}
+  .region-grid,.products,.grid2,.stats,.sala{grid-template-columns:1fr}
+  .map.diagram{height:380px}
   .card{padding:20px}
   .cover-text{padding:32px 22px}
   .q{padding:18px}
@@ -244,6 +296,7 @@ body.present .internal, body.present .star, body.present .hint, body.present .on
     <nav class="tabs" role="tablist">
       <button class="tab-btn" data-tab="regiao" aria-selected="true">Início</button>
       <button class="tab-btn" data-tab="curadoria" aria-selected="false">Curadoria personalizada</button>
+      <button class="tab-btn" data-tab="sala" aria-selected="false">Sala imersiva</button>
       <button class="tab-btn" data-tab="rentabilidade" aria-selected="false">Rentabilidade</button>
       <button class="tab-btn" data-tab="proposta" aria-selected="false">Proposta</button>
       <button class="tab-btn int only-internal" data-tab="diagnostico" aria-selected="false">Diagnóstico</button>
@@ -351,6 +404,53 @@ body.present .internal, body.present .star, body.present .hint, body.present .on
           <div class="field"><label>Link de vídeo ou tour (opcional)</label><div class="in"><input id="pf-link" placeholder="https://…"></div></div>
         </div>
         <div class="row" style="margin-top:14px"><button class="btn primary" id="pf-save">Salvar imóvel</button><button class="btn" id="pf-cancel">Cancelar</button></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SALA IMERSIVA -->
+  <section class="tab" id="tab-sala">
+    <div class="card" style="text-align:center;padding:40px 28px">
+      <div class="eyebrow">Sala imersiva</div>
+      <h2 class="sec-title" id="salaTitle">Explore o empreendimento</h2>
+      <p class="sec-sub" style="margin:0">Toque em uma unidade para ver a disponibilidade, a distância até o mar e entrar nela.</p>
+    </div>
+    <div class="sala">
+      <div class="card">
+        <div class="sala-bar">
+          <div class="chips" id="salaFilters"></div>
+          <div class="legend"><span><i style="background:#2F7D5B"></i>Disponível</span><span><i style="background:#C19A4B"></i>Reservada</span><span><i style="background:#A3A097"></i>Vendida</span></div>
+        </div>
+        <div class="map" id="salaMap"></div>
+        <p class="muted only-internal" id="placingMsg" style="font-size:12px;margin:10px 0 0" hidden></p>
+      </div>
+      <div class="card" id="salaDetail"></div>
+    </div>
+
+    <div class="card internal" style="margin-top:18px">
+      <div class="tag">Uso interno · não aparece no modo apresentação</div>
+      <h3>Unidades do empreendimento</h3>
+      <p class="muted" style="margin:0 0 10px;font-size:13px">Sem planta, o mapa mostra as unidades pela distância até o mar. Com a planta de implantação, você posiciona cada unidade clicando sobre ela.</p>
+      <div class="grid2" style="margin-bottom:14px">
+        <div class="field"><label>Planta de implantação (link)</label><div class="in"><input id="planta-url" placeholder="https://…"></div><small>Ou envie um arquivo:</small><input type="file" id="planta-file" accept="image/*" style="margin-top:6px;font-size:12px"></div>
+        <div class="field"><label>&nbsp;</label><button class="btn" id="planta-clear">Remover planta</button></div>
+      </div>
+      <div id="unitList"></div>
+      <div class="row" style="margin-top:14px"><button class="btn primary" id="addUnit">Adicionar unidade</button></div>
+
+      <div id="unitForm" hidden style="margin-top:18px;border-top:1px solid #D3DDD4;padding-top:18px">
+        <h3 id="unitFormTitle">Nova unidade</h3>
+        <div class="grid2">
+          <div class="field"><label>Nome da unidade</label><div class="in"><input id="uf-nome" placeholder="Ex.: Studio 12"></div></div>
+          <div class="field"><label>Tipologia</label><div class="in"><input id="uf-tipo" placeholder="Ex.: Studio · Casa · 2 suítes"></div></div>
+          <div class="field"><label>Área privativa</label><div class="in"><input type="number" min="0" step="any" id="uf-area"><span>m²</span></div></div>
+          <div class="field"><label>Disponibilidade</label><div class="in"><select id="uf-status"><option value="disponivel">Disponível</option><option value="reservada">Reservada</option><option value="vendida">Vendida</option></select></div></div>
+          <div class="field"><label>Distância até o mar</label><div class="in"><input type="number" min="0" step="1" id="uf-mar"><span>metros</span></div></div>
+          <div class="field"><label>Valor (opcional)</label><div class="in"><input id="uf-valor" placeholder="Ex.: Sob consulta"></div></div>
+          <div class="field"><label>Foto da unidade (link)</label><div class="in"><input id="uf-foto" placeholder="https://…"></div><small>Ou envie um arquivo:</small><input type="file" id="uf-foto-file" accept="image/*" style="margin-top:6px;font-size:12px"></div>
+          <div class="field"><label>Tour 360° (link ou imagem 360°)</label><div class="in"><input id="uf-tour" placeholder="Matterport, Kuula, YouTube 360 ou imagem .jpg"></div><small>Ou envie uma imagem 360° (equirretangular):</small><input type="file" id="uf-tour-file" accept="image/*" style="margin-top:6px;font-size:12px"></div>
+        </div>
+        <div class="row" style="margin-top:14px"><button class="btn primary" id="uf-save">Salvar unidade</button><button class="btn" id="uf-cancel">Cancelar</button></div>
       </div>
     </div>
   </section>
@@ -499,6 +599,11 @@ body.present .internal, body.present .star, body.present .hint, body.present .on
   </section>
 </main>
 
+<div class="immersive" id="immersive" hidden>
+  <div id="panoBox"></div>
+  <div class="imm-top"><div><div class="eyebrow" id="immFor">Sala imersiva</div><div class="nm" id="immName"></div></div><button id="immClose">Sair da unidade</button></div>
+</div>
+
 <script>
 const FORM_URL = "https://mateusalmeidafeitosa1-blip.github.io/curadoria/formulario.html";
 const DEFAULT_VIDEOS = [];
@@ -549,7 +654,7 @@ const $ = id => document.getElementById(id);
 
 function today(){ const d = new Date(); return new Date(d - d.getTimezoneOffset()*6e4).toISOString().slice(0,10); }
 function blank(){ return {id:"c"+Date.now(), nome:"", cidade:"", data:today(), answers:{}, notas:"", tese:"", caminhos:[{t:"",d:""},{t:"",d:""},{t:"",d:""}], rent:{}, prop:{}, sel:{}, updated:Date.now()}; }
-function norm(c){ c.answers = c.answers || {}; c.rent = c.rent || {}; c.prop = c.prop || {}; c.sel = c.sel || {}; c.caminhos = c.caminhos || [{t:"",d:""},{t:"",d:""},{t:"",d:""}]; return c; }
+function norm(c){ c.answers = c.answers || {}; c.rent = c.rent || {}; c.prop = c.prop || {}; c.sel = c.sel || {}; c.salaFav = c.salaFav || {}; c.caminhos = c.caminhos || [{t:"",d:""},{t:"",d:""},{t:"",d:""}]; return c; }
 function readLS(k, fb){ try{ const v = localStorage.getItem(k); return v ? JSON.parse(v) : fb; }catch(e){ return fb; } }
 function writeLS(k, v){ try{ localStorage.setItem(k, JSON.stringify(v)); return true; }catch(e){ return false; } }
 
@@ -716,9 +821,198 @@ $("pf-save").onclick = () => {
   const data = {}; PF.forEach(k => data[k] = $("pf-" + k).value.trim());
   if(!data.nome){ alert("Dê um nome ao imóvel."); return; }
   if(editingId){ Object.assign(catalog.find(x => x.id === editingId), data); }
-  else catalog.push(Object.assign({id:"p"+Date.now()}, data));
+  else catalog.push(Object.assign({id:"p" + Date.now().toString(36) + Math.random().toString(36).slice(2, 7)}, data));
   saveCatalog(); $("prodForm").hidden = true; renderCuradoria();
 };
+
+/* ---------- Arquivos grandes (IndexedDB) ---------- */
+const idb = {
+  db: null,
+  open(){ if(this.db) return Promise.resolve(this.db);
+    return new Promise((res, rej) => { try{ const r = indexedDB.open("curadoria-arquivos", 1);
+      r.onupgradeneeded = () => r.result.createObjectStore("files");
+      r.onsuccess = () => { this.db = r.result; res(this.db); }; r.onerror = () => rej(r.error); }catch(e){ rej(e); } }); },
+  async put(k, blob){ const db = await this.open(); return new Promise((res, rej) => { const t = db.transaction("files", "readwrite"); t.objectStore("files").put(blob, k); t.oncomplete = res; t.onerror = () => rej(t.error); }); },
+  async get(k){ const db = await this.open(); return new Promise((res, rej) => { const r = db.transaction("files").objectStore("files").get(k); r.onsuccess = () => res(r.result); r.onerror = () => rej(r.error); }); }
+};
+const urlCache = {};
+async function resolveSrc(v){
+  if(!v) return "";
+  if(!v.startsWith("idb:")) return v;
+  if(urlCache[v]) return urlCache[v];
+  try{ const b = await idb.get(v.slice(4)); if(b) return urlCache[v] = URL.createObjectURL(b); }catch(e){}
+  return "";
+}
+function shrink(file, max, q){
+  return new Promise((res, rej) => {
+    const img = new Image(), u = URL.createObjectURL(file);
+    img.onload = () => { const k = Math.min(1, max / Math.max(img.width, img.height));
+      const cv = document.createElement("canvas"); cv.width = Math.round(img.width * k); cv.height = Math.round(img.height * k);
+      cv.getContext("2d").drawImage(img, 0, 0, cv.width, cv.height); URL.revokeObjectURL(u);
+      cv.toBlob(b => b ? res(b) : rej(new Error("imagem")), "image/jpeg", q); };
+    img.onerror = () => rej(new Error("imagem")); img.src = u;
+  });
+}
+async function storeFile(key, file, max, q){ const b = await shrink(file, max, q); await idb.put(key, b); delete urlCache["idb:" + key]; return "idb:" + key; }
+
+/* ---------- Sala imersiva ---------- */
+const SALA_KEY = "curadoria.sala.v1";
+let sala = Object.assign({units:[], planta:""}, readLS(SALA_KEY, {}));
+let salaSel = null, salaFilter = "todas", placingId = null;
+const STATUS = {disponivel:"Disponível", reservada:"Reservada", vendida:"Vendida"};
+function saveSala(){ writeLS(SALA_KEY, sala); }
+const walk = m => Math.max(1, Math.round(m / 80));
+
+function renderSala(){
+  const fn = firstName();
+  $("salaTitle").textContent = fn ? `${fn}, explore o empreendimento` : "Explore o empreendimento";
+  const hasFav = sala.units.some(u => cur.salaFav[u.id]);
+  const filters = [["todas","Todas"],["disponivel","Disponíveis"]].concat(hasFav ? [["fav", fn ? `Para ${fn}` : "Para você"]] : []);
+  if(salaFilter === "fav" && !hasFav) salaFilter = "todas";
+  const fb = $("salaFilters"); fb.innerHTML = "";
+  filters.forEach(([k, l]) => { const c = document.createElement("button"); c.className = "chip" + (salaFilter === k ? " on" : ""); c.textContent = l; c.onclick = () => { salaFilter = k; renderSala(); }; fb.appendChild(c); });
+  renderMap(); renderUnitDetail(); renderUnitList();
+}
+function visible(u){ return salaFilter === "todas" || (salaFilter === "disponivel" && u.status === "disponivel") || (salaFilter === "fav" && cur.salaFav[u.id]); }
+function makePin(u){
+  const p = document.createElement("button"); p.type = "button";
+  p.className = `pin st-${u.status}` + (salaSel === u.id ? " sel" : "") + (cur.salaFav[u.id] ? " fav" : "") + (visible(u) ? "" : " dim");
+  p.innerHTML = `<span class="dot"></span><span class="lb"></span>`; p.querySelector(".lb").textContent = u.nome;
+  p.title = `${u.nome} · ${STATUS[u.status]}`;
+  p.onclick = e => { e.stopPropagation(); salaSel = u.id; renderMap(); renderUnitDetail(); };
+  return p;
+}
+async function renderMap(){
+  const map = $("salaMap"); map.innerHTML = ""; map.className = "map" + (placingId ? " placing" : "");
+  $("placingMsg").hidden = !placingId;
+  if(placingId){ const u = sala.units.find(x => x.id === placingId); $("placingMsg").textContent = `Clique na planta onde fica ${u ? u.nome : "a unidade"}.`; }
+  if(!sala.units.length){ const e = document.createElement("div"); e.className = "empty"; e.textContent = "As unidades estão sendo preparadas."; map.appendChild(e); return; }
+  const planta = await resolveSrc(sala.planta);
+  if(planta){
+    const img = document.createElement("img"); img.className = "planta"; img.src = planta; img.alt = "Planta de implantação"; map.appendChild(img);
+    sala.units.filter(u => u.x != null).forEach(u => { const p = makePin(u); p.style.left = u.x + "%"; p.style.top = u.y + "%"; map.appendChild(p); });
+    map.onclick = e => { if(!placingId) return; const r = map.getBoundingClientRect(); const u = sala.units.find(x => x.id === placingId);
+      if(u){ u.x = +((e.clientX - r.left) / r.width * 100).toFixed(2); u.y = +((e.clientY - r.top) / r.height * 100).toFixed(2); saveSala(); }
+      placingId = null; renderSala(); };
+    return;
+  }
+  map.onclick = null; map.classList.add("diagram");
+  const sea = document.createElement("div"); sea.className = "sea"; sea.textContent = "Mar"; map.appendChild(sea);
+  const units = [...sala.units].sort((a, b) => (+a.mar || 0) - (+b.mar || 0));
+  const maxM = Math.max(100, ...units.map(u => +u.mar || 0));
+  const H = map.clientHeight || 440, top = 96, bottom = H - 44;
+  [0, .5, 1].forEach(f => { const t = document.createElement("div"); t.className = "tick"; t.style.top = (top + (bottom - top) * f - 8) + "px"; t.textContent = Math.round(maxM * f) + " m"; map.appendChild(t); });
+  units.forEach((u, i) => { const p = makePin(u);
+    p.style.left = (14 + (i + 0.5) * (80 / units.length)) + "%";
+    p.style.top = (top + (bottom - top) * ((+u.mar || 0) / maxM)) + "px"; map.appendChild(p); });
+}
+async function renderUnitDetail(){
+  const box = $("salaDetail"); box.innerHTML = "";
+  const u = sala.units.find(x => x.id === salaSel);
+  if(!u){ const e = document.createElement("div"); e.className = "empty"; e.style.padding = "60px 10px"; e.textContent = "Selecione uma unidade no mapa."; box.appendChild(e); return; }
+  const fn = firstName();
+  const ph = document.createElement("div"); ph.className = "unit-photo";
+  const src = await resolveSrc(u.foto); if(src) ph.style.backgroundImage = `url("${src}")`;
+  const b = document.createElement("span"); b.className = `badge st-${u.status}`; b.innerHTML = "<i></i>"; b.appendChild(document.createTextNode(STATUS[u.status])); ph.appendChild(b);
+  if(cur.salaFav[u.id]){ const f = document.createElement("span"); f.className = "badge fav-b"; f.textContent = fn ? `Selecionada para ${fn}` : "Selecionada para você"; ph.appendChild(f); }
+  const h = document.createElement("h3"); h.className = "d-name"; h.textContent = u.nome;
+  const s = document.createElement("div"); s.className = "d-specs"; s.textContent = [u.tipo, u.area ? `${u.area} m²` : ""].filter(Boolean).join(" · ");
+  box.append(ph, h, s);
+  if(u.mar !== "" && u.mar != null){
+    const maxM = Math.max(100, ...sala.units.map(x => +x.mar || 0));
+    const d = document.createElement("div"); d.className = "sea-dist";
+    d.innerHTML = `<div class="big"></div><div class="sm"></div><div class="sea-bar"><i></i></div>`;
+    d.querySelector(".big").textContent = `${(+u.mar).toLocaleString("pt-BR")} m`;
+    d.querySelector(".sm").textContent = +u.mar === 0 ? "Pé na areia" : `até o mar · cerca de ${walk(+u.mar)} min a pé`;
+    d.querySelector("i").style.width = Math.max(4, 100 - (+u.mar / maxM) * 100) + "%";
+    box.appendChild(d);
+  }
+  if(u.valor){ const v = document.createElement("p"); v.style.margin = "0 0 16px"; v.textContent = u.valor; box.appendChild(v); }
+  const go = document.createElement("button"); go.className = "btn primary big";
+  go.textContent = u.tour ? "Entrar na unidade" : "Ver a unidade"; go.onclick = () => openImmersive(u);
+  if(!u.tour && !u.foto){ go.disabled = true; go.textContent = "Tour 360° em breve"; go.style.opacity = ".5"; }
+  box.appendChild(go);
+}
+function renderUnitList(){
+  const list = $("unitList"); list.innerHTML = "";
+  if(!sala.units.length){ list.innerHTML = '<p class="muted" style="margin:0">Nenhuma unidade cadastrada.</p>'; return; }
+  sala.units.forEach(u => {
+    const row = document.createElement("div"); row.className = `unit-row st-${u.status}`;
+    const dt = document.createElement("span"); dt.className = "dt";
+    const tx = document.createElement("div"); tx.innerHTML = `<div style="font-family:var(--serif);font-size:18px"></div><div class="muted" style="font-size:12px"></div>`;
+    tx.children[0].textContent = u.nome; tx.children[1].textContent = [STATUS[u.status], u.tipo, u.mar !== "" ? `${u.mar} m do mar` : "", u.tour ? "tour 360°" : "", sala.planta ? (u.x != null ? "posicionada" : "sem posição") : ""].filter(Boolean).join(" · ");
+    const act = document.createElement("div"); act.className = "act";
+    const lab = document.createElement("label"); const ck = document.createElement("input"); ck.type = "checkbox"; ck.className = "chk"; ck.checked = !!cur.salaFav[u.id];
+    ck.onchange = () => { if(ck.checked) cur.salaFav[u.id] = true; else delete cur.salaFav[u.id]; save(); renderSala(); };
+    lab.append(ck, document.createTextNode("Destacar para o cliente"));
+    act.appendChild(lab);
+    if(sala.planta){ const pos = document.createElement("button"); pos.className = "link"; pos.textContent = "Posicionar"; pos.onclick = () => { placingId = u.id; renderMap(); $("salaMap").scrollIntoView({behavior:"smooth", block:"center"}); }; act.appendChild(pos); }
+    const ed = document.createElement("button"); ed.className = "link"; ed.textContent = "Editar"; ed.onclick = () => openUnitForm(u);
+    const del = document.createElement("button"); del.className = "link"; del.textContent = "Remover";
+    del.onclick = () => { if(!confirm(`Remover ${u.nome}?`)) return; sala.units = sala.units.filter(x => x.id !== u.id); if(salaSel === u.id) salaSel = null; saveSala(); renderSala(); };
+    act.append(ed, del); row.append(dt, tx, act); list.appendChild(row);
+  });
+}
+let editingUnit = null;
+const UF = ["nome","tipo","area","status","mar","valor","foto","tour"];
+function openUnitForm(u){
+  editingUnit = u ? u.id : "u" + Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
+  $("unitFormTitle").textContent = u ? "Editar unidade" : "Nova unidade";
+  UF.forEach(k => $("uf-" + k).value = u ? (u[k] ?? "") : (k === "status" ? "disponivel" : ""));
+  $("uf-foto-file").value = ""; $("uf-tour-file").value = "";
+  $("unitForm").hidden = false; $("uf-nome").focus();
+}
+$("addUnit").onclick = () => openUnitForm(null);
+$("uf-cancel").onclick = () => { $("unitForm").hidden = true; };
+$("uf-foto-file").onchange = async e => { const f = e.target.files[0]; if(!f) return; try{ $("uf-foto").value = await storeFile(`sala:${editingUnit}:foto`, f, 1600, 0.82); }catch(err){ alert("Não foi possível salvar a imagem neste navegador."); } };
+$("uf-tour-file").onchange = async e => { const f = e.target.files[0]; if(!f) return; try{ $("uf-tour").value = await storeFile(`sala:${editingUnit}:tour`, f, 4096, 0.88); }catch(err){ alert("Não foi possível salvar a imagem 360° neste navegador."); } };
+$("uf-save").onclick = () => {
+  const d = {}; UF.forEach(k => d[k] = $("uf-" + k).value.trim());
+  if(!d.nome){ alert("Dê um nome à unidade."); return; }
+  const ex = sala.units.find(x => x.id === editingUnit);
+  if(ex) Object.assign(ex, d); else sala.units.push(Object.assign({id: editingUnit}, d));
+  saveSala(); $("unitForm").hidden = true; salaSel = editingUnit; renderSala();
+};
+$("planta-url").onchange = e => { sala.planta = e.target.value.trim(); saveSala(); renderSala(); };
+$("planta-file").onchange = async e => { const f = e.target.files[0]; if(!f) return; try{ sala.planta = await storeFile("sala:planta", f, 2400, 0.85); saveSala(); $("planta-url").value = ""; renderSala(); }catch(err){ alert("Não foi possível salvar a planta neste navegador."); } };
+$("planta-clear").onclick = () => { sala.planta = ""; $("planta-url").value = ""; saveSala(); renderSala(); };
+
+let pano = null;
+function loadPannellum(){
+  if(window.pannellum) return Promise.resolve();
+  return new Promise((res, rej) => {
+    const l = document.createElement("link"); l.rel = "stylesheet"; l.href = "https://cdnjs.cloudflare.com/ajax/libs/pannellum/2.5.6/pannellum.css"; document.head.appendChild(l);
+    const s = document.createElement("script"); s.src = "https://cdnjs.cloudflare.com/ajax/libs/pannellum/2.5.6/pannellum.js"; s.onload = res; s.onerror = rej; document.head.appendChild(s);
+  });
+}
+function embedTour(u){
+  let m = u.match(/(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([\w-]{11})/);
+  if(m) return `https://www.youtube.com/embed/${m[1]}?autoplay=1&rel=0`;
+  m = u.match(/matterport\.com\/(?:show\/)?\?m=([\w]+)/); if(m) return `https://my.matterport.com/show/?m=${m[1]}&play=1`;
+  m = u.match(/kuula\.co\/(?:share|post)\/([\w-]+)/); if(m) return `https://kuula.co/share/${m[1]}?fs=1&vr=1&thumbs=1&info=0&logo=0`;
+  return u;
+}
+async function openImmersive(u){
+  const fn = firstName();
+  $("immFor").textContent = fn ? `Sala imersiva · ${fn}` : "Sala imersiva";
+  $("immName").textContent = [u.nome, u.tipo].filter(Boolean).join(" · ");
+  const box = $("panoBox"); box.innerHTML = ""; $("immersive").hidden = false; document.body.style.overflow = "hidden";
+  const isImg = u.tour && (u.tour.startsWith("idb:") || /\.(jpe?g|png|webp)(\?|$)/i.test(u.tour));
+  if(isImg){
+    try{ await loadPannellum(); const src = await resolveSrc(u.tour);
+      pano = pannellum.viewer(box, {type:"equirectangular", panorama: src, autoLoad:true, autoRotate:-2, showZoomCtrl:true, showFullscreenCtrl:false, hfov:100}); }
+    catch(e){ box.innerHTML = '<div class="imm-note">Não foi possível abrir o tour 360°. Verifique a conexão.</div>'; }
+  } else if(u.tour){
+    const f = document.createElement("iframe"); f.src = embedTour(u.tour); f.allow = "autoplay; fullscreen; xr-spatial-tracking; gyroscope; accelerometer"; f.allowFullscreen = true; box.appendChild(f);
+  } else {
+    const src = await resolveSrc(u.foto);
+    const p = document.createElement("div"); p.className = "imm-photo"; p.style.backgroundImage = `url("${src}")`; box.appendChild(p);
+    const n = document.createElement("div"); n.className = "imm-note"; n.textContent = "Tour 360° desta unidade em breve"; box.appendChild(n);
+  }
+}
+function closeImmersive(){ if(pano){ try{ pano.destroy(); }catch(e){} pano = null; } $("panoBox").innerHTML = ""; $("immersive").hidden = true; document.body.style.overflow = ""; }
+$("immClose").onclick = closeImmersive;
+document.addEventListener("keydown", e => { if(e.key === "Escape" && !$("immersive").hidden) closeImmersive(); });
 
 /* ---------- Diagnóstico ---------- */
 function renderForm(){
@@ -733,7 +1027,7 @@ function renderForm(){
   document.querySelectorAll("[data-rent]").forEach(i => i.value = cur.rent[i.dataset.rent] ?? "");
   document.querySelectorAll("[data-prop]").forEach(i => i.value = cur.prop[i.dataset.prop] ?? "");
   $("formLink").hidden = true; $("genMsg").textContent = "";
-  updateProgress(); renderRegiao(); renderRent(); renderCuradoria();
+  updateProgress(); renderRegiao(); renderRent(); renderCuradoria(); salaSel = null; renderSala();
 }
 function renderQ(q){
   const card = document.createElement("div"); card.className = "card q";
@@ -895,7 +1189,7 @@ function renderList(){
 }
 $("exportBtn").onclick = () => {
   if(hasContent(cur)) store[cur.id] = cur;
-  const blob = new Blob([JSON.stringify({version:2, clientes:store, catalogo:catalog, ajustes:settings}, null, 2)], {type:"application/json"});
+  const blob = new Blob([JSON.stringify({version:2, clientes:store, catalogo:catalog, ajustes:settings, sala}, null, 2)], {type:"application/json"});
   const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = `curadoria-backup-${today()}.json`; a.click();
   setTimeout(() => URL.revokeObjectURL(a.href), 1000);
 };
@@ -906,7 +1200,8 @@ $("importFile").onchange = e => {
   r.onload = () => {
     try{
       const d = JSON.parse(r.result);
-      if(d.version === 2){ Object.assign(store, d.clientes || {}); (d.catalogo || []).forEach(p => { if(!catalog.find(x => x.id === p.id)) catalog.push(p); }); if(d.ajustes) settings = Object.assign(settings, d.ajustes); }
+      if(d.version === 2){ Object.assign(store, d.clientes || {}); (d.catalogo || []).forEach(p => { if(!catalog.find(x => x.id === p.id)) catalog.push(p); }); if(d.ajustes) settings = Object.assign(settings, d.ajustes);
+        if(d.sala){ (d.sala.units || []).forEach(u => { if(!sala.units.find(x => x.id === u.id)) sala.units.push(u); }); if(!sala.planta && d.sala.planta) sala.planta = d.sala.planta; saveSala(); } }
       else Object.assign(store, d);
       writeLS(KEY, store); saveCatalog(); writeLS(SET_KEY, settings); loadSettings(); buildCover(); renderList(); renderCuradoria(); alert("Backup importado.");
     }catch(err){ alert("Arquivo inválido."); }
@@ -914,7 +1209,7 @@ $("importFile").onchange = e => {
   };
   r.readAsText(f);
 };
-function loadSettings(){ $("set-whats").value = settings.whats || ""; $("set-videos").value = settings.videos || ""; }
+function loadSettings(){ $("set-whats").value = settings.whats || ""; $("set-videos").value = settings.videos || ""; $("planta-url").value = sala.planta.startsWith("idb:") ? "" : sala.planta; }
 $("set-whats").oninput = e => { settings.whats = e.target.value; writeLS(SET_KEY, settings); };
 $("set-videos").onchange = e => { settings.videos = e.target.value; writeLS(SET_KEY, settings); buildCover(); };
 
@@ -930,6 +1225,7 @@ function showTab(name){
   document.querySelectorAll(".tab").forEach(t => t.classList.toggle("active", t.id === "tab-" + name));
   if(name === "regiao"){ renderRegiao(); fitFrames(); }
   if(name === "curadoria") renderCuradoria();
+  if(name === "sala") renderSala();
   if(name === "rentabilidade") renderRent();
   if(name === "proposta") renderProposta();
   if(name === "clientes") renderList();
