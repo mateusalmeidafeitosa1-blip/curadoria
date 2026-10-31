@@ -19,10 +19,11 @@ html{-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.55}
 button,input,textarea{font:inherit;color:inherit}
 button{cursor:pointer}
+[hidden]{display:none!important}
 
 /* Header */
 .top{background:var(--paper);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10}
-.top-in{max-width:920px;margin:0 auto;padding:18px 20px 0;display:flex;flex-direction:column;gap:14px}
+.top-in{max-width:1040px;margin:0 auto;padding:18px 20px 0;display:flex;flex-direction:column;gap:14px}
 .brand{display:flex;align-items:center;gap:14px}
 .mono{width:42px;height:42px;border:1px solid var(--sand);border-radius:50%;display:grid;place-items:center;font-family:var(--serif);font-size:18px;letter-spacing:.06em;color:var(--accent)}
 .brand .name{font-family:var(--serif);font-size:22px;font-weight:500;letter-spacing:.02em;line-height:1.1}
@@ -31,14 +32,12 @@ button{cursor:pointer}
 .tabs::-webkit-scrollbar{display:none}
 .tab-btn{background:none;border:0;padding:10px 14px 12px;font-size:13px;letter-spacing:.04em;color:var(--muted);border-bottom:2px solid transparent;white-space:nowrap}
 .tab-btn[aria-selected="true"]{color:var(--accent);border-bottom-color:var(--sand);font-weight:500}
+.tab-btn.int{font-style:italic}
 
 /* Toolbar */
-.toolbar{max-width:920px;margin:0 auto;padding:14px 20px;display:flex;flex-wrap:wrap;align-items:center;gap:12px 18px}
-.progress{flex:1 1 240px;min-width:200px}
-.progress-txt{font-size:12px;color:var(--muted);margin-bottom:6px}
-.progress-txt b{color:var(--ink);font-weight:600}
-.bar{height:4px;background:var(--line);border-radius:4px;overflow:hidden}
-.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--sea),var(--accent));transition:width .3s}
+.toolbar{max-width:1040px;margin:0 auto;padding:14px 20px;display:flex;flex-wrap:wrap;align-items:center;gap:12px 18px}
+.client-pill{font-size:12px;color:var(--muted);flex:1 1 200px}
+.client-pill b{color:var(--ink);font-weight:600}
 .switch{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);user-select:none;cursor:pointer}
 .switch input{appearance:none;width:34px;height:20px;border-radius:20px;background:var(--line);position:relative;cursor:pointer;transition:background .2s;margin:0}
 .switch input::after{content:"";position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:#fff;transition:left .2s;box-shadow:0 1px 2px rgba(0,0,0,.15)}
@@ -49,27 +48,46 @@ button{cursor:pointer}
 .btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
 .status{font-size:11px;color:var(--muted);min-width:110px}
 
-main{max-width:920px;margin:0 auto;padding:4px 20px 80px}
+main{max-width:1040px;margin:0 auto;padding:4px 20px 80px}
 .tab{display:none}
 .tab.active{display:block}
 .card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:28px;margin-bottom:18px}
-
-/* Hero */
-.hero{padding:44px 36px;text-align:center;background:var(--paper) radial-gradient(ellipse at top,var(--sand-soft),transparent 70%)}
 .eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--sand);font-weight:500}
-.hero h1{font-family:var(--serif);font-weight:400;font-size:40px;line-height:1.15;margin:14px 0 6px}
-.hero h1 .pre{display:block;font-style:italic;font-size:24px;color:var(--muted)}
-.name-input{width:100%;max-width:520px;text-align:center;border:0;border-bottom:1px solid var(--line);background:transparent;font-family:var(--serif);font-size:40px;padding:2px 0 6px;outline:none}
-.name-input:focus{border-bottom-color:var(--sand)}
-.name-input::placeholder{color:#C7BFAF;font-style:italic}
-.meta{display:flex;justify-content:center;flex-wrap:wrap;gap:12px 28px;margin-top:18px}
-.meta label{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:8px}
-.meta input{border:0;border-bottom:1px solid var(--line);background:transparent;padding:4px 2px;font-size:14px;letter-spacing:0;text-transform:none;outline:none;min-width:0;width:150px}
-.meta input:focus{border-bottom-color:var(--sand)}
-.lead{font-family:var(--serif);font-size:20px;font-style:italic;color:var(--muted);max-width:560px;margin:22px auto 0}
-.personal{font-size:13px;color:var(--accent);margin-top:10px;min-height:1em}
+.muted{color:var(--muted)}
+.sec-title{font-family:var(--serif);font-weight:500;font-size:30px;margin:6px 0 4px;line-height:1.15}
+.sec-sub{font-size:14px;color:var(--muted);margin:0 0 18px}
 
-/* Internal cards */
+/* Cover */
+.cover{position:relative;min-height:min(78vh,640px);border-radius:18px;overflow:hidden;margin-bottom:18px;background:#1c2a24 radial-gradient(ellipse at 30% 20%,#5B8A87 0%,#2E4A3B 45%,#13201a 100%);display:flex;align-items:flex-end;color:#fff}
+.cover-media{position:absolute;inset:0;overflow:hidden}
+.cover-media .slide{position:absolute;inset:0;opacity:0;transition:opacity 1.2s ease}
+.cover-media .slide.on{opacity:1}
+.cover-media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.cover-media iframe{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);border:0;pointer-events:none}
+.cover-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,18,14,.15) 0%,rgba(10,18,14,.25) 45%,rgba(10,18,14,.78) 100%)}
+.cover-text{position:relative;padding:48px 44px;max-width:760px}
+.cover .eyebrow{color:#E9D9B8}
+.cover h1{font-family:var(--serif);font-weight:400;font-size:clamp(40px,7vw,72px);line-height:1.02;margin:10px 0 12px;text-shadow:0 2px 24px rgba(0,0,0,.25)}
+.cover-sub{font-size:12px;letter-spacing:.2em;text-transform:uppercase;opacity:.85}
+.cover-quote{font-family:var(--serif);font-style:italic;font-size:21px;line-height:1.4;margin:20px 0 0;opacity:.92;max-width:560px}
+.cover-dots{position:absolute;right:24px;bottom:24px;display:flex;gap:8px}
+.cover-dots button{width:8px;height:8px;border-radius:50%;border:0;background:rgba(255,255,255,.45);padding:0}
+.cover-dots button.on{background:#fff}
+
+/* Região */
+.region-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-bottom:18px}
+.region-grid .card{margin:0}
+.r-card h3{font-family:var(--serif);font-weight:500;font-size:24px;margin:8px 0 10px;line-height:1.2}
+.r-card p{margin:0 0 8px;color:#3A443E}
+.r-card ul{margin:6px 0 0;padding-left:18px;color:#3A443E}
+.r-card li{margin:4px 0}
+.towns{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.town{border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-size:12px;letter-spacing:.04em;background:#FFFEFB}
+.wide{grid-column:1/-1}
+.for-you .ans{font-family:var(--serif);font-size:20px;line-height:1.45;white-space:pre-wrap;margin-bottom:6px}
+.for-you h4{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--sand);font-weight:500;margin:18px 0 6px}
+
+/* Internal */
 .internal{background:var(--accent-soft);border-color:#D3DDD4}
 .internal h3{font-family:var(--serif);font-weight:500;font-size:20px;margin:0 0 8px;color:var(--accent)}
 .internal .tag{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);opacity:.7;margin-bottom:6px}
@@ -77,12 +95,50 @@ main{max-width:920px;margin:0 auto;padding:4px 20px 80px}
 .internal ul{margin:6px 0 0;padding-left:18px}
 .internal li{margin:4px 0}
 
-/* Blocks */
+/* Fields */
+.field label{display:block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.field .in{display:flex;align-items:center;border:1px solid var(--line);border-radius:10px;background:#FFFEFB;padding:0 12px}
+.field .in:focus-within{border-color:var(--sand);box-shadow:0 0 0 3px var(--sand-soft)}
+.field .in span{font-size:13px;color:var(--muted);white-space:nowrap}
+.field input{flex:1;min-width:0;border:0;background:transparent;padding:11px 8px;outline:none;font-size:15px}
+.field small{display:block;font-size:11px;color:var(--muted);margin-top:4px}
+textarea{width:100%;border:1px solid var(--line);border-radius:10px;background:#FFFEFB;padding:12px 14px;min-height:76px;resize:vertical;outline:none;line-height:1.5}
+textarea:focus{border-color:var(--sand);box-shadow:0 0 0 3px var(--sand-soft)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px 22px}
+.grid2 .wide{grid-column:1/-1}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+
+/* Produtos */
+.products{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.product{background:var(--paper);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
+.p-img{aspect-ratio:4/3;background:linear-gradient(135deg,#5B8A87,#2E4A3B);background-size:cover;background-position:center;position:relative}
+.p-img .p-tag{position:absolute;left:14px;top:14px;background:rgba(255,253,248,.92);color:var(--accent);font-size:10px;letter-spacing:.18em;text-transform:uppercase;padding:6px 10px;border-radius:999px}
+.p-body{padding:22px 24px 24px;display:flex;flex-direction:column;gap:8px;flex:1}
+.p-body h3{font-family:var(--serif);font-weight:500;font-size:26px;line-height:1.15;margin:0}
+.p-specs{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.p-desc{margin:4px 0 0;color:#3A443E}
+.p-why{margin-top:10px;border-top:1px solid var(--line);padding-top:12px}
+.p-why .k{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--sand)}
+.p-why .v{font-family:var(--serif);font-size:19px;line-height:1.4;font-style:italic;white-space:pre-wrap;margin-top:4px}
+.p-foot{display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:14px;font-size:13px}
+.p-foot a{color:var(--accent)}
+.empty{padding:36px;text-align:center;color:var(--muted);font-family:var(--serif);font-size:20px;font-style:italic}
+.cat-item{display:grid;grid-template-columns:auto 56px 1fr auto;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid #D3DDD4}
+.cat-item:last-child{border-bottom:0}
+.cat-thumb{width:56px;height:42px;border-radius:6px;background:linear-gradient(135deg,#5B8A87,#2E4A3B);background-size:cover;background-position:center}
+.cat-item .nm{font-family:var(--serif);font-size:19px;line-height:1.2}
+.cat-item .sm{font-size:12px;color:var(--muted)}
+.cat-why{grid-column:2/-1}
+.cat-why textarea{min-height:56px;background:#fff}
+.chk{width:18px;height:18px;accent-color:var(--accent)}
+.link{background:none;border:0;color:var(--muted);font-size:12px;text-decoration:underline;padding:4px 6px}
+
+/* Diagnóstico */
 .block-head{display:flex;align-items:baseline;gap:16px;margin:36px 4px 14px}
 .block-num{font-family:var(--serif);font-size:44px;line-height:1;color:var(--sand)}
 .block-title{font-family:var(--serif);font-size:28px;font-weight:500;line-height:1.1}
 .block-sub{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:4px}
-.q{padding:22px 28px;margin-bottom:10px;transition:border-color .2s}
+.q{padding:22px 28px;margin-bottom:10px}
 .q.done{border-color:#CFD9CF}
 .q-top{display:flex;gap:14px;align-items:flex-start}
 .q-n{flex:none;width:28px;height:28px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;font-size:12px;color:var(--muted);margin-top:2px}
@@ -91,21 +147,32 @@ main{max-width:920px;margin:0 auto;padding:4px 20px 80px}
 .star{color:var(--sand);font-size:14px;margin-left:6px;vertical-align:2px}
 .hint{font-size:12px;color:var(--sea);margin:6px 0 0 42px}
 .q-body{margin:14px 0 0 42px}
-textarea{width:100%;border:1px solid var(--line);border-radius:10px;background:#FFFEFB;padding:12px 14px;min-height:76px;resize:vertical;outline:none;line-height:1.5}
-textarea:focus{border-color:var(--sand);box-shadow:0 0 0 3px var(--sand-soft)}
 textarea.note{min-height:52px;margin-top:10px}
 .chips{display:flex;flex-wrap:wrap;gap:8px}
-.chip{border:1px solid var(--line);background:#FFFEFB;padding:8px 14px;border-radius:999px;font-size:13px;display:inline-flex;align-items:center;gap:8px;transition:all .15s}
+.chip{border:1px solid var(--line);background:#FFFEFB;padding:8px 14px;border-radius:999px;font-size:13px;display:inline-flex;align-items:center;gap:8px}
 .chip:hover{border-color:var(--sand)}
 .chip.on{background:var(--accent);border-color:var(--accent);color:#fff}
 .chip .rk{width:18px;height:18px;border-radius:50%;background:#fff;color:var(--accent);font-size:11px;font-weight:600;display:grid;place-items:center}
 .date-in{border:1px solid var(--line);border-radius:10px;background:#FFFEFB;padding:9px 12px;outline:none}
-.link{background:none;border:0;color:var(--muted);font-size:12px;text-decoration:underline;padding:4px 0;margin-left:6px}
+.progress-txt{font-size:12px;color:var(--muted);margin-bottom:6px}
+.progress-txt b{color:var(--ink)}
+.bar{height:4px;background:var(--line);border-radius:4px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--sea),var(--accent));transition:width .3s}
+.formlink{word-break:break-all;font-size:13px;background:#fff;border:1px dashed var(--sand);border-radius:10px;padding:10px 12px;margin-top:10px}
 
-/* Present mode */
-body.present .internal, body.present .star, body.present .hint, body.present .only-internal{display:none!important}
+/* Rentabilidade */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:6px}
+.stat{border:1px solid var(--line);border-radius:12px;padding:16px;background:#FFFEFB}
+.stat .k{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.stat .v{font-family:var(--serif);font-size:28px;line-height:1.15;margin-top:6px;color:var(--accent)}
+.scen{width:100%;border-collapse:collapse;margin-top:8px;font-size:14px}
+.scen th,.scen td{padding:10px 8px;border-bottom:1px solid var(--line);text-align:right}
+.scen th:first-child,.scen td:first-child{text-align:left}
+.scen th{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.scen td.base{font-weight:600;color:var(--accent)}
+.disclaimer{font-size:12px;color:var(--muted);margin-top:16px;line-height:1.5}
 
-/* Tese */
+/* Proposta */
 .doc{padding:56px 52px}
 .doc-cover{text-align:center;border-bottom:1px solid var(--line);padding-bottom:34px;margin-bottom:30px}
 .doc-cover h2{font-family:var(--serif);font-weight:400;font-size:44px;margin:12px 0 4px;line-height:1.1}
@@ -114,7 +181,6 @@ body.present .internal, body.present .star, body.present .hint, body.present .on
 .doc h4{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--sand);font-weight:500;margin:28px 0 8px}
 .doc .ans{font-family:var(--serif);font-size:20px;line-height:1.45;white-space:pre-wrap}
 .doc ol.prio{font-family:var(--serif);font-size:20px;margin:0;padding-left:22px}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:4px 32px}
 .doc textarea{font-family:var(--serif);font-size:19px}
 .paths{display:grid;gap:14px}
 .path{border:1px solid var(--line);border-radius:12px;padding:16px 18px;background:#FFFEFB}
@@ -132,76 +198,35 @@ body.present .internal, body.present .star, body.present .hint, body.present .on
 .list td{padding:14px 8px;border-bottom:1px solid var(--line);vertical-align:middle}
 .list td.nm{font-family:var(--serif);font-size:20px}
 .list .act{text-align:right;white-space:nowrap}
-.list-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
-.muted{color:var(--muted)}
 
-/* Região */
-.region-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-bottom:18px}
-.region-grid .card{margin:0}
-.r-card h3{font-family:var(--serif);font-weight:500;font-size:24px;margin:8px 0 10px;line-height:1.2}
-.r-card p{margin:0 0 8px;color:#3A443E}
-.r-card ul{margin:6px 0 0;padding-left:18px;color:#3A443E}
-.r-card li{margin:4px 0}
-.towns{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
-.town{border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-size:12px;letter-spacing:.04em;background:#FFFEFB}
-.wide{grid-column:1/-1}
-.for-you .ans{font-family:var(--serif);font-size:20px;line-height:1.45;white-space:pre-wrap;margin-bottom:6px}
-.for-you h4{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--sand);font-weight:500;margin:18px 0 6px}
+/* Present mode */
+body.present .internal, body.present .star, body.present .hint, body.present .only-internal{display:none!important}
 
-/* Rentabilidade */
-.rent-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px 22px}
-.field label{display:block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
-.field .in{display:flex;align-items:center;border:1px solid var(--line);border-radius:10px;background:#FFFEFB;padding:0 12px}
-.field .in:focus-within{border-color:var(--sand);box-shadow:0 0 0 3px var(--sand-soft)}
-.field .in span{font-size:13px;color:var(--muted)}
-.field input{flex:1;min-width:0;border:0;background:transparent;padding:11px 8px;outline:none;font-size:15px}
-.field small{display:block;font-size:11px;color:var(--muted);margin-top:4px}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:6px}
-.stat{border:1px solid var(--line);border-radius:12px;padding:16px;background:#FFFEFB}
-.stat .k{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
-.stat .v{font-family:var(--serif);font-size:28px;line-height:1.15;margin-top:6px;color:var(--accent)}
-.scen{width:100%;border-collapse:collapse;margin-top:8px;font-size:14px}
-.scen th,.scen td{padding:10px 8px;border-bottom:1px solid var(--line);text-align:right}
-.scen th:first-child,.scen td:first-child{text-align:left}
-.scen th{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:500}
-.scen td.base{font-weight:600;color:var(--accent)}
-.disclaimer{font-size:12px;color:var(--muted);margin-top:16px;line-height:1.5}
-.sec-title{font-family:var(--serif);font-weight:500;font-size:24px;margin:0 0 4px}
-.sec-sub{font-size:13px;color:var(--muted);margin:0 0 18px}
-
-/* Proposta fields */
-.prop-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px 22px}
-.prop-grid .field.wide{grid-column:1/-1}
-.prop-grid textarea{font-family:var(--sans);font-size:15px;min-height:70px}
-
-@media (max-width:640px){
-  .region-grid,.rent-grid,.prop-grid,.stats{grid-template-columns:1fr}
+@media (max-width:720px){
+  .region-grid,.products,.grid2,.stats{grid-template-columns:1fr}
   .card{padding:20px}
-  .hero{padding:32px 20px}
-  .hero h1,.name-input{font-size:30px}
+  .cover-text{padding:32px 22px}
   .q{padding:18px}
   .q-body,.hint{margin-left:0}
-  .q-text{font-size:19px}
   .doc{padding:32px 22px}
-  .doc-cover h2{font-size:34px}
-  .grid2{grid-template-columns:1fr}
   .list th:nth-child(3),.list td:nth-child(3){display:none}
+  .cat-item{grid-template-columns:auto 48px 1fr}
+  .cat-item .act{grid-column:2/-1}
 }
 
 @media print{
-  @page{margin:16mm}
+  @page{margin:14mm}
   body{background:#fff;font-size:12px}
-  .top,.toolbar,.internal,.noprint,.star,.hint,.only-internal{display:none!important}
+  .top,.toolbar,.internal,.noprint,.star,.hint,.only-internal,.cover-dots{display:none!important}
   main{padding:0;max-width:none}
   .tab{display:none!important}
   .tab.active{display:block!important}
   .card{border:0;padding:0;margin:0 0 10px;break-inside:avoid}
+  .product{break-inside:avoid}
   .doc{padding:0}
   .doc textarea,.path textarea,.path input{display:none}
   .print-out{display:block}
   .path.print-empty{display:none}
-  .q{break-inside:avoid;border-bottom:1px solid var(--line);border-radius:0;padding:12px 0}
-  textarea{border:0;padding:4px 0;min-height:0;resize:none}
 }
 </style>
 </head>
@@ -217,33 +242,46 @@ body.present .internal, body.present .star, body.present .hint, body.present .on
       </div>
     </div>
     <nav class="tabs" role="tablist">
-      <button class="tab-btn" role="tab" data-tab="regiao" aria-selected="true">Região</button>
-      <button class="tab-btn" role="tab" data-tab="curadoria" aria-selected="false">Curadoria personalizada</button>
-      <button class="tab-btn" role="tab" data-tab="rentabilidade" aria-selected="false">Rentabilidade</button>
-      <button class="tab-btn" role="tab" data-tab="proposta" aria-selected="false">Proposta</button>
-      <button class="tab-btn only-internal" role="tab" data-tab="clientes" aria-selected="false">Clientes</button>
+      <button class="tab-btn" data-tab="regiao" aria-selected="true">Início</button>
+      <button class="tab-btn" data-tab="curadoria" aria-selected="false">Curadoria personalizada</button>
+      <button class="tab-btn" data-tab="rentabilidade" aria-selected="false">Rentabilidade</button>
+      <button class="tab-btn" data-tab="proposta" aria-selected="false">Proposta</button>
+      <button class="tab-btn int only-internal" data-tab="diagnostico" aria-selected="false">Diagnóstico</button>
+      <button class="tab-btn int only-internal" data-tab="clientes" aria-selected="false">Clientes e ajustes</button>
     </nav>
   </div>
 </header>
 
 <div class="toolbar">
-  <div class="progress only-internal">
-    <div class="progress-txt"><b id="pc">0</b>/30 respondidas · <b id="pe">0</b>/12 essenciais</div>
-    <div class="bar"><i id="pbar"></i></div>
-  </div>
+  <div class="client-pill only-internal">Cliente aberto: <b id="pillName">—</b></div>
   <label class="switch"><input type="checkbox" id="present"> Modo apresentação</label>
   <button class="btn only-internal" id="newClient">Novo cliente</button>
   <span class="status only-internal" id="status"></span>
 </div>
 
 <main>
-  <!-- REGIÃO -->
+  <!-- INÍCIO / REGIÃO -->
   <section class="tab active" id="tab-regiao">
-    <div class="card hero">
-      <div class="eyebrow">Região</div>
-      <h1><span class="pre">Alagoas, litoral norte</span>Rota Ecológica dos Milagres</h1>
-      <p class="lead">“O verdadeiro luxo não está dentro das paredes, está no que existe ao redor delas.”</p>
-      <div class="personal" id="r-personal"></div>
+    <div class="cover" id="cover">
+      <div class="cover-media" id="coverMedia"></div>
+      <div class="cover-shade"></div>
+      <div class="cover-text">
+        <div class="eyebrow" id="coverEyebrow">Curadoria personalizada</div>
+        <h1 id="coverName">Rota Ecológica dos Milagres</h1>
+        <div class="cover-sub" id="coverSub">Alagoas · Brasil</div>
+        <p class="cover-quote">“O verdadeiro luxo não está dentro das paredes, está no que existe ao redor delas.”</p>
+      </div>
+      <div class="cover-dots" id="coverDots"></div>
+    </div>
+
+    <div class="card internal" id="coverHelp">
+      <div class="tag">Uso interno</div>
+      <h3>Antes da call</h3>
+      <ul>
+        <li>Digite o nome do cliente em <b>Diagnóstico</b> (ou importe as respostas do formulário). A capa passa a mostrar “Curadoria personalizada para [nome]”.</li>
+        <li>Os vídeos da capa são configurados em <b>Clientes e ajustes</b>. Sem vídeo, a capa usa um fundo nas cores da marca.</li>
+        <li>Ative o <b>Modo apresentação</b> antes de compartilhar a tela.</li>
+      </ul>
     </div>
 
     <div class="region-grid">
@@ -283,57 +321,37 @@ body.present .internal, body.present .star, body.present .hint, body.present .on
         <div id="r-foryou-body"></div>
       </div>
     </div>
-
-    <div class="card internal">
-      <div class="tag">Uso interno</div>
-      <h3>Como usar esta aba</h3>
-      <ul>
-        <li>Comece a reunião pelo território, antes de qualquer pergunta. Ela cria o contexto da crença.</li>
-        <li>O bloco “Por que a região faz sentido para você” aparece sozinho conforme a curadoria é preenchida.</li>
-      </ul>
-    </div>
   </section>
 
-  <!-- CURADORIA -->
+  <!-- CURADORIA / PRODUTOS -->
   <section class="tab" id="tab-curadoria">
-    <div class="card hero">
+    <div class="card" style="text-align:center;padding:40px 28px">
       <div class="eyebrow">Curadoria personalizada</div>
-      <h1><span class="pre">Preparada exclusivamente para</span>
-        <input class="name-input" id="nome" placeholder="nome do cliente" autocomplete="off">
-      </h1>
-      <div class="meta">
-        <label>Cidade <input id="cidade" autocomplete="off"></label>
-        <label>Data <input type="date" id="data"></label>
-      </div>
-      <p class="lead">Antes de qualquer imóvel, entender quem você é e o que deseja construir.</p>
-      <div class="personal" id="personal"></div>
+      <h2 class="sec-title" id="selTitle">Seleção exclusiva</h2>
+      <p class="sec-sub" id="selSub" style="margin:0">Imóveis escolhidos a partir da sua curadoria.</p>
     </div>
+    <div class="products" id="products"></div>
 
-    <div class="card internal">
-      <div class="tag">Uso interno · abertura</div>
-      <h3>Antes das perguntas</h3>
-      <blockquote>“Antes de qualquer imóvel, eu gosto de entender quem você é e o que quer construir. Hoje eu não vou te apresentar nenhum produto. Vou fazer algumas perguntas e, a partir delas, preparo uma tese de investimento pensada só para você. Pode ser?”</blockquote>
-    </div>
-
-    <div id="blocks"></div>
-
-    <div class="card internal">
+    <div class="card internal" style="margin-top:18px">
       <div class="tag">Uso interno · não aparece no modo apresentação</div>
-      <h3>Notas privadas</h3>
-      <textarea id="notas" placeholder="Impressões, sinais, palavras exatas do cliente, pontos de atenção…"></textarea>
-    </div>
+      <h3>Catálogo e seleção para este cliente</h3>
+      <p class="muted" style="margin:0 0 10px;font-size:13px">Marque os imóveis que entram na seleção e escreva por que cada um faz sentido para este cliente. O catálogo fica salvo para todos os clientes.</p>
+      <div id="catalog"></div>
+      <div class="row" style="margin-top:14px"><button class="btn primary" id="addProduct">Adicionar imóvel ao catálogo</button></div>
 
-    <div class="card internal">
-      <div class="tag">Uso interno</div>
-      <h3>Regras para conduzir</h3>
-      <ul>
-        <li>Escute 80% do tempo. O diagnóstico é dele, não seu.</li>
-        <li>Pergunte “por quê?” duas vezes nas respostas importantes.</li>
-        <li>Anote as palavras exatas do cliente para usar na tese.</li>
-        <li>Se pedir para ver um imóvel: “Prefiro te mostrar o que faz sentido para você. Por isso a tese vem primeiro.”</li>
-        <li>A ordem é flexível. Use o roteiro como checklist.</li>
-        <li>Clientes mais formais: “o senhor” ou “a senhora” até ser convidado a mudar.</li>
-      </ul>
+      <div id="prodForm" hidden style="margin-top:18px;border-top:1px solid #D3DDD4;padding-top:18px">
+        <h3 id="prodFormTitle">Novo imóvel</h3>
+        <div class="grid2">
+          <div class="field"><label>Nome do imóvel / unidade</label><div class="in"><input id="pf-nome" placeholder="Ex.: Residência 204"></div></div>
+          <div class="field"><label>Empreendimento / local</label><div class="in"><input id="pf-local" placeholder="Ex.: Manta by Pininfarina"></div></div>
+          <div class="field"><label>Características</label><div class="in"><input id="pf-specs" placeholder="Ex.: 3 suítes · 180 m² · vista mar"></div></div>
+          <div class="field"><label>Valor (opcional)</label><div class="in"><input id="pf-valor" placeholder="Ex.: Sob consulta"></div></div>
+          <div class="field wide"><label>Descrição curta</label><textarea id="pf-desc"></textarea></div>
+          <div class="field"><label>Imagem (link)</label><div class="in"><input id="pf-img" placeholder="https://…"></div><small>Ou envie um arquivo:</small><input type="file" id="pf-file" accept="image/*" style="margin-top:6px;font-size:12px"></div>
+          <div class="field"><label>Link de vídeo ou tour (opcional)</label><div class="in"><input id="pf-link" placeholder="https://…"></div></div>
+        </div>
+        <div class="row" style="margin-top:14px"><button class="btn primary" id="pf-save">Salvar imóvel</button><button class="btn" id="pf-cancel">Cancelar</button></div>
+      </div>
     </div>
   </section>
 
@@ -343,7 +361,7 @@ body.present .internal, body.present .star, body.present .hint, body.present .on
       <div class="eyebrow">Rentabilidade</div>
       <h2 class="sec-title">Simulação do investimento</h2>
       <p class="sec-sub" id="rent-for">Premissas definidas em conjunto, a partir da sua curadoria.</p>
-      <div class="rent-grid">
+      <div class="grid2">
         <div class="field"><label>Valor do investimento</label><div class="in"><span>R$</span><input type="number" min="0" step="any" data-rent="valor"></div></div>
         <div class="field"><label>Diária média</label><div class="in"><span>R$</span><input type="number" min="0" step="any" data-rent="diaria"></div></div>
         <div class="field"><label>Taxa de ocupação</label><div class="in"><input type="number" min="0" max="100" step="any" data-rent="ocup"><span>%</span></div><small>Sobre as noites disponíveis para locação</small></div>
@@ -354,8 +372,7 @@ body.present .internal, body.present .star, body.present .hint, body.present .on
         <div class="field"><label>Horizonte do investimento</label><div class="in"><input type="number" min="1" max="40" step="1" data-rent="horiz"><span>anos</span></div></div>
       </div>
     </div>
-
-    <div class="card" id="rent-out">
+    <div class="card">
       <div class="eyebrow">Resultado (cenário base)</div>
       <div class="stats">
         <div class="stat"><div class="k">Receita bruta anual</div><div class="v" id="o-bruta">—</div></div>
@@ -365,7 +382,6 @@ body.present .internal, body.present .star, body.present .hint, body.present .on
         <div class="stat"><div class="k" id="k-proj">Valor projetado do ativo</div><div class="v" id="o-proj">—</div></div>
         <div class="stat"><div class="k">Ganho total no horizonte</div><div class="v" id="o-total">—</div></div>
       </div>
-
       <h4 class="eyebrow" style="margin:26px 0 4px">Cenários</h4>
       <table class="scen">
         <thead><tr><th></th><th>Conservador</th><th>Base</th><th>Otimista</th></tr></thead>
@@ -380,14 +396,13 @@ body.present .internal, body.present .star, body.present .hint, body.present .on
     <div class="card internal">
       <div class="tag">Uso interno · preencha antes de apresentar</div>
       <h3>Dados da proposta</h3>
-      <div class="prop-grid">
-        <div class="field wide"><label>Imóvel / unidade proposta</label><div class="in"><input data-prop="imovel" placeholder="Ex.: Unidade 204 · Manta by Pininfarina"></div></div>
+      <div class="grid2">
+        <div class="field wide"><label>Imóvel / unidade proposta</label><div class="in"><input data-prop="imovel" placeholder="Ex.: Residência 204 · Manta by Pininfarina"></div></div>
         <div class="field"><label>Valor</label><div class="in"><span>R$</span><input type="number" min="0" step="any" data-prop="valor"></div></div>
         <div class="field"><label>Validade da proposta</label><div class="in"><input type="date" data-prop="validade"></div></div>
         <div class="field wide"><label>Condições de pagamento</label><textarea data-prop="condicoes" placeholder="Entrada, parcelas, reforços, permuta…"></textarea></div>
       </div>
     </div>
-
     <div class="noprint" style="display:flex;justify-content:flex-end;gap:10px;margin-bottom:12px">
       <button class="btn primary" id="printTese">Imprimir / salvar PDF</button>
     </div>
@@ -398,20 +413,15 @@ body.present .internal, body.present .star, body.present .hint, body.present .on
         <div class="for" id="t-for">Curadoria preparada exclusivamente para você</div>
         <div class="sig">Mateus Almeida · Curadoria Privada · Rota Ecológica dos Milagres</div>
       </div>
-
       <div id="t-heard"></div>
-
       <h4>A sua tese</h4>
       <textarea id="tese" placeholder="Escreva aqui a tese: o que faz sentido para este cliente e por quê."></textarea>
       <div class="print-out ans" id="tese-print"></div>
-
       <h4>Caminhos possíveis</h4>
       <div class="paths" id="paths"></div>
-
       <div id="t-offer"></div>
       <div id="t-rent"></div>
       <div id="t-next"></div>
-
       <div class="belief">
         “O verdadeiro luxo não está dentro das paredes, está no que existe ao redor delas.”
         <div class="sig">Mateus Almeida</div>
@@ -419,25 +429,80 @@ body.present .internal, body.present .star, body.present .hint, body.present .on
     </div>
   </section>
 
-  <!-- CLIENTES -->
+  <!-- DIAGNÓSTICO (interno) -->
+  <section class="tab" id="tab-diagnostico">
+    <div class="card">
+      <div class="eyebrow">Diagnóstico do cliente</div>
+      <div class="grid2" style="margin-top:12px">
+        <div class="field"><label>Nome do cliente</label><div class="in"><input id="nome" autocomplete="off" placeholder="Nome completo"></div></div>
+        <div class="field"><label>Cidade</label><div class="in"><input id="cidade" autocomplete="off"></div></div>
+        <div class="field"><label>Data da call</label><div class="in"><input type="date" id="data"></div></div>
+        <div class="field"><label>Progresso</label><div class="progress-txt" style="margin-top:8px"><b id="pc">0</b>/30 respondidas · <b id="pe">0</b>/12 essenciais</div><div class="bar"><i id="pbar"></i></div></div>
+      </div>
+    </div>
+
+    <div class="card internal">
+      <div class="tag">Formulário pré-call</div>
+      <h3>1. Envie o formulário ao cliente</h3>
+      <p style="margin:0 0 10px">Gera um link com o nome do cliente já preenchido. Ao terminar, o cliente envia as respostas para o seu WhatsApp.</p>
+      <div class="row"><button class="btn primary" id="genLink">Gerar link do formulário</button><span class="muted" id="genMsg" style="font-size:12px"></span></div>
+      <div class="formlink" id="formLink" hidden></div>
+      <h3 style="margin-top:22px">2. Importe as respostas recebidas</h3>
+      <p style="margin:0 0 10px">Cole aqui a mensagem inteira que o cliente enviou pelo WhatsApp.</p>
+      <textarea id="importText" placeholder="Cole a mensagem aqui…"></textarea>
+      <div class="row" style="margin-top:10px"><button class="btn primary" id="importBtnMsg">Importar respostas</button><span class="muted" id="importMsg" style="font-size:12px"></span></div>
+    </div>
+
+    <div class="card internal">
+      <div class="tag">Abertura da call</div>
+      <blockquote>“Antes de qualquer imóvel, eu gosto de entender quem você é e o que quer construir. Li com atenção as suas respostas e hoje quero aprofundar alguns pontos. Pode ser?”</blockquote>
+    </div>
+
+    <div id="blocks"></div>
+
+    <div class="card internal">
+      <div class="tag">Notas privadas</div>
+      <textarea id="notas" placeholder="Impressões, sinais, palavras exatas do cliente, pontos de atenção…"></textarea>
+    </div>
+    <div class="card internal">
+      <div class="tag">Regras para conduzir</div>
+      <ul>
+        <li>Escute 80% do tempo. Pergunte “por quê?” duas vezes nas respostas importantes.</li>
+        <li>Anote as palavras exatas do cliente para usar na proposta.</li>
+        <li>Se pedir para ver um imóvel antes da hora: “Prefiro te mostrar o que faz sentido para você.”</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- CLIENTES E AJUSTES (interno) -->
   <section class="tab" id="tab-clientes">
     <div class="card">
       <div class="eyebrow">Clientes</div>
-      <p class="muted" style="margin:6px 0 16px">Tudo fica salvo apenas neste navegador, neste computador. Exporte um backup regularmente.</p>
+      <p class="muted" style="margin:6px 0 16px">Tudo fica salvo apenas neste navegador, neste aparelho. Exporte um backup regularmente.</p>
       <table class="list">
         <thead><tr><th>Cliente</th><th>Progresso</th><th>Atualizado</th><th></th></tr></thead>
         <tbody id="clist"></tbody>
       </table>
-      <div class="list-actions">
+      <div class="row" style="margin-top:20px">
         <button class="btn" id="exportBtn">Exportar backup</button>
         <button class="btn" id="importBtn">Importar backup</button>
         <input type="file" id="importFile" accept="application/json" hidden>
+      </div>
+    </div>
+    <div class="card">
+      <div class="eyebrow">Ajustes</div>
+      <div class="grid2" style="margin-top:12px">
+        <div class="field"><label>Seu WhatsApp</label><div class="in"><input id="set-whats" inputmode="tel" placeholder="Ex.: 5582999999999"></div><small>Com código do país e DDD, só números. Recebe as respostas do formulário.</small></div>
+        <div class="field wide"><label>Vídeos da capa (um link por linha)</label><textarea id="set-videos" placeholder="https://www.youtube.com/watch?v=…&#10;https://vimeo.com/…&#10;https://…/video.mp4"></textarea><small>Aceita YouTube, Vimeo ou arquivo .mp4. Com mais de um, a capa alterna entre eles.</small></div>
       </div>
     </div>
   </section>
 </main>
 
 <script>
+const FORM_URL = "https://mateusalmeidafeitosa1-blip.github.io/curadoria/formulario.html";
+const DEFAULT_VIDEOS = [];
+
 const BLOCKS = [
   {t:"Contexto", s:"O momento e o caminho até aqui", q:[
     {id:1, star:1, text:"O que te trouxe a essa conversa agora?", hint:"Por que neste momento?"},
@@ -461,7 +526,7 @@ const BLOCKS = [
     {id:15, type:"chips", text:"Prefere acompanhar a gestão de perto ou receber relatórios?", options:["Acompanhar de perto","Relatórios periódicos","Não quero me envolver"]},
     {id:16, text:"Quem viria com você?"}]},
   {t:"Estrutura e decisão", s:"Os caminhos para concretizar", q:[
-    {id:17, star:1, text:"Qual faixa de investimento faz sentido para esse movimento?", hint:"Só depois do bloco anterior, com a confiança estabelecida."},
+    {id:17, star:1, text:"Qual faixa de investimento faz sentido para esse movimento?", hint:"Só com a confiança estabelecida."},
     {id:18, type:"chips", text:"Os recursos são próprios, ou você pensa em financiamento ou permuta?", options:["Recursos próprios","Financiamento","Permuta","Combinação"]},
     {id:19, type:"chips", text:"Você compraria como pessoa física, empresa ou holding? Já tem assessoria para isso?", options:["Pessoa física","Empresa","Holding","A definir"]},
     {id:20, star:1, text:"Quem mais participa dessa decisão?"},
@@ -474,29 +539,31 @@ const BLOCKS = [
   {t:"Fechamento", s:"Próximos passos", q:[
     {id:26, star:1, text:"Tem algo que eu não perguntei e que eu deveria saber?"},
     {id:27, text:"Deixa eu ver se entendi…", hint:"Resuma em 3 frases o que ouviu e confirme com o cliente."},
-    {id:28, type:"chips", text:"Como você prefere receber a sua tese?", options:["Reunião","Vídeo","Documento"]},
+    {id:28, type:"chips", text:"Como você prefere receber a sua proposta?", options:["Reunião","Vídeo","Documento"]},
     {id:29, text:"Qual o melhor canal e horário para falarmos?"},
-    {id:30, type:"date", text:"Próximo passo combinado", hint:"“Em até X dias eu te apresento a sua tese e 2 ou 3 caminhos possíveis.”"}]}
+    {id:30, type:"date", text:"Próximo passo combinado", hint:"“Em até X dias eu te apresento a sua proposta.”"}]}
 ];
 const ALL_Q = BLOCKS.flatMap(b => b.q);
-const STAR_COUNT = ALL_Q.filter(q => q.star).length;
-const KEY = "curadoria.clientes.v1";
-const CUR_KEY = "curadoria.atual.v1";
+const KEY = "curadoria.clientes.v1", CUR_KEY = "curadoria.atual.v1", CAT_KEY = "curadoria.catalogo.v1", SET_KEY = "curadoria.ajustes.v1";
 const $ = id => document.getElementById(id);
 
 function today(){ const d = new Date(); return new Date(d - d.getTimezoneOffset()*6e4).toISOString().slice(0,10); }
-function blank(){ return {id:"c"+Date.now(), nome:"", cidade:"", data:today(), answers:{}, notas:"", tese:"", caminhos:[{t:"",d:""},{t:"",d:""},{t:"",d:""}], rent:{}, prop:{}, updated:Date.now()}; }
-function norm(c){ c.rent = c.rent || {}; c.prop = c.prop || {}; c.caminhos = c.caminhos || [{t:"",d:""},{t:"",d:""},{t:"",d:""}]; return c; }
+function blank(){ return {id:"c"+Date.now(), nome:"", cidade:"", data:today(), answers:{}, notas:"", tese:"", caminhos:[{t:"",d:""},{t:"",d:""},{t:"",d:""}], rent:{}, prop:{}, sel:{}, updated:Date.now()}; }
+function norm(c){ c.answers = c.answers || {}; c.rent = c.rent || {}; c.prop = c.prop || {}; c.sel = c.sel || {}; c.caminhos = c.caminhos || [{t:"",d:""},{t:"",d:""},{t:"",d:""}]; return c; }
 function readLS(k, fb){ try{ const v = localStorage.getItem(k); return v ? JSON.parse(v) : fb; }catch(e){ return fb; } }
 function writeLS(k, v){ try{ localStorage.setItem(k, JSON.stringify(v)); return true; }catch(e){ return false; } }
 
 let store = readLS(KEY, {});
+let catalog = readLS(CAT_KEY, []);
+let settings = Object.assign({whats:"", videos:""}, readLS(SET_KEY, {}));
 let cur = norm(store[readLS(CUR_KEY, null)] || blank());
 
 function ans(id){ return cur.answers[id] || (cur.answers[id] = {v:"", note:""}); }
-function answered(id){ const a = cur.answers[id]; if(!a) return false; const v = Array.isArray(a.v) ? a.v.length : String(a.v||"").trim(); return !!(v || String(a.note||"").trim()); }
-function hasContent(c){ return c.nome.trim() || Object.keys(c.answers).some(id => { const a=c.answers[id]; return (Array.isArray(a.v)?a.v.length:String(a.v||"").trim()) || String(a.note||"").trim(); }); }
+function filled(a){ if(!a) return false; const v = Array.isArray(a.v) ? a.v.length : String(a.v||"").trim(); return !!(v || String(a.note||"").trim()); }
+function answered(id){ return filled(cur.answers[id]); }
+function hasContent(c){ return c.nome.trim() || Object.values(c.answers).some(filled) || Object.keys(c.sel).length; }
 function firstName(){ return cur.nome.trim().split(/\s+/)[0] || ""; }
+function val(id){ const a = cur.answers[id]; if(!a) return ""; const v = Array.isArray(a.v) ? a.v.join(" > ") : String(a.v||"").trim(); const n = String(a.note||"").trim(); return [v,n].filter(Boolean).join(" — "); }
 
 let saveT;
 function save(){
@@ -505,17 +572,159 @@ function save(){
   saveT = setTimeout(() => {
     if(hasContent(cur)) store[cur.id] = cur;
     const ok = writeLS(KEY, store) && writeLS(CUR_KEY, cur.id);
-    $("status").textContent = ok ? "Salvo automaticamente" : "Não foi possível salvar neste navegador";
+    $("status").textContent = ok ? "Salvo automaticamente" : "Não foi possível salvar";
   }, 300);
   updateProgress();
 }
 
-/* ---------- Form ---------- */
+/* ---------- Capa ---------- */
+function renderCover(){
+  const nm = cur.nome.trim();
+  $("coverEyebrow").textContent = nm ? "Curadoria personalizada para" : "Curadoria personalizada";
+  $("coverName").textContent = nm || "Rota Ecológica dos Milagres";
+  $("coverSub").textContent = nm ? "Rota Ecológica dos Milagres · Alagoas" : "Alagoas · Brasil";
+  $("pillName").textContent = nm || "sem nome";
+  document.title = nm ? `Curadoria · ${nm}` : "Curadoria Privada · Mateus Almeida";
+}
+function videoList(){ const own = settings.videos.split(/\n+/).map(s => s.trim()).filter(Boolean); return own.length ? own : DEFAULT_VIDEOS; }
+function parseVideo(u){
+  let m = u.match(/(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/|live\/)|youtu\.be\/)([\w-]{11})/);
+  if(m) return {kind:"frame", src:`https://www.youtube.com/embed/${m[1]}?autoplay=1&mute=1&loop=1&playlist=${m[1]}&controls=0&modestbranding=1&playsinline=1&rel=0`};
+  m = u.match(/vimeo\.com\/(?:video\/)?(\d+)/);
+  if(m) return {kind:"frame", src:`https://player.vimeo.com/video/${m[1]}?background=1&autoplay=1&loop=1&muted=1`};
+  if(/^https?:\/\//.test(u)) return {kind:"video", src:u};
+  return null;
+}
+let coverTimer, coverIdx = 0;
+function buildCover(){
+  const media = $("coverMedia"), dots = $("coverDots");
+  media.innerHTML = ""; dots.innerHTML = ""; clearInterval(coverTimer);
+  const vids = videoList().map(parseVideo).filter(Boolean);
+  vids.forEach((v, i) => {
+    const s = document.createElement("div"); s.className = "slide" + (i === 0 ? " on" : "");
+    if(v.kind === "frame"){ const f = document.createElement("iframe"); f.src = v.src; f.allow = "autoplay; encrypted-media; picture-in-picture"; f.title = "Vídeo da região"; s.appendChild(f); }
+    else { const el = document.createElement("video"); el.src = v.src; el.autoplay = true; el.muted = true; el.loop = true; el.playsInline = true; el.setAttribute("playsinline",""); s.appendChild(el); }
+    media.appendChild(s);
+    if(vids.length > 1){ const d = document.createElement("button"); d.className = i === 0 ? "on" : ""; d.setAttribute("aria-label", `Vídeo ${i+1}`); d.onclick = () => showSlide(i); dots.appendChild(d); }
+  });
+  coverIdx = 0; fitFrames();
+  if(vids.length > 1) coverTimer = setInterval(() => showSlide((coverIdx + 1) % vids.length), 25000);
+}
+function showSlide(i){
+  coverIdx = i;
+  $("coverMedia").querySelectorAll(".slide").forEach((s, k) => s.classList.toggle("on", k === i));
+  $("coverDots").querySelectorAll("button").forEach((d, k) => d.classList.toggle("on", k === i));
+}
+function fitFrames(){
+  const box = $("cover"); const w = box.clientWidth, h = box.clientHeight;
+  const fw = Math.max(w, h * 16/9), fh = Math.max(h, w * 9/16);
+  $("coverMedia").querySelectorAll("iframe").forEach(f => { f.style.width = fw + "px"; f.style.height = fh + "px"; });
+}
+window.addEventListener("resize", fitFrames);
+
+/* ---------- Região ---------- */
+function renderRegiao(){
+  renderCover();
+  const body = $("r-foryou-body"); body.innerHTML = "";
+  const items = [["O que você busca em um lugar", val(22)], ["O que é luxo para você", val(23)], ["O papel deste imóvel na sua vida", val(6)]].filter(([,c]) => c);
+  items.forEach(([t,c]) => { const h = document.createElement("h4"); h.textContent = t; const p = document.createElement("div"); p.className = "ans"; p.textContent = c; body.append(h, p); });
+  $("r-foryou").hidden = !items.length;
+}
+
+/* ---------- Curadoria (produtos) ---------- */
+function saveCatalog(){ writeLS(CAT_KEY, catalog) || alert("Não foi possível salvar o catálogo (talvez as imagens estejam pesadas demais)."); }
+function bgImg(el, src){ if(src) el.style.backgroundImage = `url("${src.replace(/"/g, "%22")}")`; }
+function renderCuradoria(){
+  const fn = firstName();
+  $("selTitle").textContent = fn ? `Seleção exclusiva para ${fn}` : "Seleção exclusiva";
+  $("selSub").textContent = fn ? `Imóveis escolhidos a partir da curadoria de ${fn}.` : "Imóveis escolhidos a partir da sua curadoria.";
+
+  const grid = $("products"); grid.innerHTML = "";
+  const chosen = catalog.filter(p => cur.sel[p.id]);
+  if(!chosen.length){
+    const e = document.createElement("div"); e.className = "card empty wide"; e.style.gridColumn = "1/-1";
+    e.textContent = "A seleção está sendo preparada."; grid.appendChild(e);
+  }
+  chosen.forEach(p => {
+    const c = document.createElement("article"); c.className = "product";
+    const img = document.createElement("div"); img.className = "p-img"; bgImg(img, p.img);
+    if(p.local){ const t = document.createElement("span"); t.className = "p-tag"; t.textContent = p.local; img.appendChild(t); }
+    const b = document.createElement("div"); b.className = "p-body";
+    const h = document.createElement("h3"); h.textContent = p.nome || "Imóvel";
+    b.appendChild(h);
+    if(p.specs){ const s = document.createElement("div"); s.className = "p-specs"; s.textContent = p.specs; b.appendChild(s); }
+    if(p.desc){ const d = document.createElement("p"); d.className = "p-desc"; d.textContent = p.desc; b.appendChild(d); }
+    const why = (cur.sel[p.id] && cur.sel[p.id].why || "").trim();
+    if(why){ const w = document.createElement("div"); w.className = "p-why"; w.innerHTML = `<div class="k">Por que para ${fn ? "" : "você"}</div><div class="v"></div>`; if(fn) w.querySelector(".k").textContent = `Por que para ${fn}`; w.querySelector(".v").textContent = why; b.appendChild(w); }
+    if(p.valor || p.link){
+      const f = document.createElement("div"); f.className = "p-foot";
+      const v = document.createElement("span"); v.textContent = p.valor || ""; f.appendChild(v);
+      if(p.link){ const a = document.createElement("a"); a.href = p.link; a.target = "_blank"; a.rel = "noopener"; a.textContent = "Ver vídeo / tour"; f.appendChild(a); }
+      b.appendChild(f);
+    }
+    c.append(img, b); grid.appendChild(c);
+  });
+
+  const cat = $("catalog"); cat.innerHTML = "";
+  if(!catalog.length){ const p = document.createElement("p"); p.className = "muted"; p.style.margin = "0"; p.textContent = "O catálogo está vazio. Adicione os imóveis da sua carteira."; cat.appendChild(p); }
+  catalog.forEach(p => {
+    const row = document.createElement("div"); row.className = "cat-item";
+    const ck = document.createElement("input"); ck.type = "checkbox"; ck.className = "chk"; ck.checked = !!cur.sel[p.id]; ck.title = "Incluir na seleção deste cliente";
+    ck.onchange = () => { if(ck.checked) cur.sel[p.id] = {why:""}; else delete cur.sel[p.id]; save(); renderCuradoria(); };
+    const th = document.createElement("div"); th.className = "cat-thumb"; bgImg(th, p.img);
+    const tx = document.createElement("div"); tx.innerHTML = `<div class="nm"></div><div class="sm"></div>`;
+    tx.querySelector(".nm").textContent = p.nome || "Imóvel"; tx.querySelector(".sm").textContent = [p.local, p.specs].filter(Boolean).join(" · ");
+    const act = document.createElement("div"); act.className = "act";
+    const ed = document.createElement("button"); ed.className = "link"; ed.textContent = "Editar"; ed.onclick = () => openProdForm(p);
+    const del = document.createElement("button"); del.className = "link"; del.textContent = "Remover";
+    del.onclick = () => { if(!confirm(`Remover "${p.nome || "este imóvel"}" do catálogo?`)) return; catalog = catalog.filter(x => x.id !== p.id); saveCatalog(); renderCuradoria(); };
+    act.append(ed, del);
+    row.append(ck, th, tx, act);
+    if(cur.sel[p.id]){
+      const w = document.createElement("div"); w.className = "cat-why";
+      const ta = document.createElement("textarea"); ta.placeholder = `Por que este imóvel faz sentido para ${fn || "este cliente"}…`; ta.value = cur.sel[p.id].why || "";
+      ta.oninput = () => { cur.sel[p.id].why = ta.value; save(); };
+      ta.onchange = renderCuradoria;
+      w.appendChild(ta); row.appendChild(w);
+    }
+    cat.appendChild(row);
+  });
+}
+let editingId = null;
+const PF = ["nome","local","specs","valor","desc","img","link"];
+function openProdForm(p){
+  editingId = p ? p.id : null;
+  $("prodFormTitle").textContent = p ? "Editar imóvel" : "Novo imóvel";
+  PF.forEach(k => $("pf-" + k).value = p ? (p[k] || "") : "");
+  $("pf-file").value = "";
+  $("prodForm").hidden = false; $("pf-nome").focus();
+}
+$("addProduct").onclick = () => openProdForm(null);
+$("pf-cancel").onclick = () => { $("prodForm").hidden = true; };
+$("pf-file").onchange = e => {
+  const f = e.target.files[0]; if(!f) return;
+  const img = new Image(); const url = URL.createObjectURL(f);
+  img.onload = () => {
+    const max = 1400, k = Math.min(1, max / Math.max(img.width, img.height));
+    const cv = document.createElement("canvas"); cv.width = Math.round(img.width * k); cv.height = Math.round(img.height * k);
+    cv.getContext("2d").drawImage(img, 0, 0, cv.width, cv.height);
+    $("pf-img").value = cv.toDataURL("image/jpeg", 0.8); URL.revokeObjectURL(url);
+  };
+  img.src = url;
+};
+$("pf-save").onclick = () => {
+  const data = {}; PF.forEach(k => data[k] = $("pf-" + k).value.trim());
+  if(!data.nome){ alert("Dê um nome ao imóvel."); return; }
+  if(editingId){ Object.assign(catalog.find(x => x.id === editingId), data); }
+  else catalog.push(Object.assign({id:"p"+Date.now()}, data));
+  saveCatalog(); $("prodForm").hidden = true; renderCuradoria();
+};
+
+/* ---------- Diagnóstico ---------- */
 function renderForm(){
   const wrap = $("blocks"); wrap.innerHTML = "";
   BLOCKS.forEach((b, bi) => {
-    const head = document.createElement("div");
-    head.className = "block-head";
+    const head = document.createElement("div"); head.className = "block-head";
     head.innerHTML = `<div class="block-num">${String(bi+1).padStart(2,"0")}</div><div><div class="block-title">${b.t}</div><div class="block-sub">${b.s}</div></div>`;
     wrap.appendChild(head);
     b.q.forEach(q => wrap.appendChild(renderQ(q)));
@@ -523,87 +732,75 @@ function renderForm(){
   $("nome").value = cur.nome; $("cidade").value = cur.cidade; $("data").value = cur.data; $("notas").value = cur.notas;
   document.querySelectorAll("[data-rent]").forEach(i => i.value = cur.rent[i.dataset.rent] ?? "");
   document.querySelectorAll("[data-prop]").forEach(i => i.value = cur.prop[i.dataset.prop] ?? "");
-  updateProgress(); updatePersonal(); renderRent(); renderRegiao();
+  $("formLink").hidden = true; $("genMsg").textContent = "";
+  updateProgress(); renderRegiao(); renderRent(); renderCuradoria();
 }
-
 function renderQ(q){
-  const card = document.createElement("div");
-  card.className = "card q"; card.dataset.q = q.id;
+  const card = document.createElement("div"); card.className = "card q";
   card.innerHTML = `<div class="q-top"><div class="q-n">${q.id}</div><div class="q-text">${q.text}${q.star ? '<span class="star" title="Essencial">★</span>' : ""}</div></div>${q.hint ? `<div class="hint">${q.hint}</div>` : ""}<div class="q-body"></div>`;
-  const body = card.querySelector(".q-body");
-  const a = ans(q.id);
-
+  const body = card.querySelector(".q-body"); const a = ans(q.id);
   if(q.type === "chips" || q.type === "rank"){
     if(q.type === "rank" && !Array.isArray(a.v)) a.v = [];
     const chips = document.createElement("div"); chips.className = "chips";
     q.options.forEach(opt => {
-      const c = document.createElement("button"); c.type = "button"; c.className = "chip";
-      c.addEventListener("click", () => {
-        if(q.type === "rank"){ const i = a.v.indexOf(opt); i >= 0 ? a.v.splice(i,1) : a.v.push(opt); }
-        else a.v = a.v === opt ? "" : opt;
-        paintChips(); save(); mark();
-      });
-      c.dataset.opt = opt; chips.appendChild(c);
+      const c = document.createElement("button"); c.type = "button"; c.className = "chip"; c.dataset.opt = opt;
+      c.onclick = () => { if(q.type === "rank"){ const i = a.v.indexOf(opt); i >= 0 ? a.v.splice(i,1) : a.v.push(opt); } else a.v = a.v === opt ? "" : opt; paint(); save(); mark(); };
+      chips.appendChild(c);
     });
     body.appendChild(chips);
-    function paintChips(){
-      chips.querySelectorAll(".chip").forEach(c => {
-        const opt = c.dataset.opt;
-        if(q.type === "rank"){
-          const r = a.v.indexOf(opt) + 1;
-          c.classList.toggle("on", r > 0);
-          c.innerHTML = (r ? `<span class="rk">${r}</span>` : "") ;
-          c.appendChild(document.createTextNode(opt));
-        } else { c.classList.toggle("on", a.v === opt); c.textContent = opt; }
-      });
-    }
-    paintChips();
+    function paint(){ chips.querySelectorAll(".chip").forEach(c => { const opt = c.dataset.opt;
+      if(q.type === "rank"){ const r = a.v.indexOf(opt) + 1; c.classList.toggle("on", r > 0); c.innerHTML = r ? `<span class="rk">${r}</span>` : ""; c.appendChild(document.createTextNode(opt)); }
+      else { c.classList.toggle("on", a.v === opt); c.textContent = opt; } }); }
+    paint();
   } else if(q.type === "date"){
     const d = document.createElement("input"); d.type = "date"; d.className = "date-in"; d.value = a.v || "";
-    d.addEventListener("input", () => { a.v = d.value; save(); mark(); });
-    body.appendChild(d);
+    d.oninput = () => { a.v = d.value; save(); mark(); }; body.appendChild(d);
   }
-
-  const ta = document.createElement("textarea");
-  const isMain = !q.type;
-  ta.className = isMain ? "" : "note";
-  ta.placeholder = isMain ? "Resposta…" : "Observações…";
+  const isMain = !q.type; const ta = document.createElement("textarea");
+  ta.className = isMain ? "" : "note"; ta.placeholder = isMain ? "Resposta…" : "Observações…";
   ta.value = isMain ? (a.v || "") : (a.note || "");
-  ta.addEventListener("input", () => { if(isMain) a.v = ta.value; else a.note = ta.value; save(); mark(); });
+  ta.oninput = () => { if(isMain) a.v = ta.value; else a.note = ta.value; save(); mark(); };
   body.appendChild(ta);
-
   function mark(){ card.classList.toggle("done", answered(q.id)); }
-  mark();
-  return card;
+  mark(); return card;
 }
-
 function updateProgress(){
-  const done = ALL_Q.filter(q => answered(q.id)).length;
-  const ess = ALL_Q.filter(q => q.star && answered(q.id)).length;
-  $("pc").textContent = done; $("pe").textContent = ess;
-  $("pbar").style.width = (done / ALL_Q.length * 100) + "%";
+  const done = ALL_Q.filter(q => answered(q.id)).length, ess = ALL_Q.filter(q => q.star && answered(q.id)).length;
+  $("pc").textContent = done; $("pe").textContent = ess; $("pbar").style.width = (done / ALL_Q.length * 100) + "%";
 }
-function updatePersonal(){
-  const fn = firstName();
-  $("personal").textContent = fn ? `Uma curadoria única, construída a partir das respostas de ${fn}.` : "";
-  document.title = fn ? `Curadoria · ${cur.nome.trim()}` : "Curadoria Privada · Mateus Almeida";
-}
+["nome","cidade","data","notas"].forEach(k => $(k).addEventListener("input", e => { cur[k] = e.target.value; if(k === "nome") renderCover(); save(); }));
 
-["nome","cidade","data","notas"].forEach(k => $(k).addEventListener("input", e => { cur[k] = e.target.value; if(k === "nome") updatePersonal(); save(); }));
+$("genLink").onclick = async () => {
+  const nm = cur.nome.trim();
+  if(!nm){ $("genMsg").textContent = "Digite o nome do cliente primeiro."; return; }
+  const w = (settings.whats || "").replace(/\D/g, "");
+  const p = new URLSearchParams({n: nm}); if(w) p.set("w", w);
+  const link = FORM_URL + "#" + p.toString();
+  const box = $("formLink"); box.hidden = false; box.textContent = link;
+  try{ await navigator.clipboard.writeText(link); $("genMsg").textContent = "Link copiado. Cole no WhatsApp do cliente."; }
+  catch(e){ $("genMsg").textContent = "Copie o link abaixo."; }
+  if(!w) $("genMsg").textContent += " Atenção: cadastre seu WhatsApp em Clientes e ajustes para receber as respostas.";
+};
 
-/* ---------- Região ---------- */
-function renderRegiao(){
-  const fn = firstName();
-  $("r-personal").textContent = fn ? `Apresentada a ${fn}.` : "";
-  const body = $("r-foryou-body"); body.innerHTML = "";
-  const items = [["O que você busca em um lugar", val(22)], ["O que é luxo para você", val(23)], ["O papel deste imóvel na sua vida", val(6)]].filter(([,c]) => c);
-  items.forEach(([t,c]) => {
-    const h = document.createElement("h4"); h.textContent = t;
-    const p = document.createElement("div"); p.className = "ans"; p.textContent = c;
-    body.append(h, p);
-  });
-  $("r-foryou").hidden = !items.length;
+function decodeCode(text){
+  const m = text.match(/CUR1:([A-Za-z0-9+/=_-]+)/); if(!m) return null;
+  const b = m[1].replace(/-/g, "+").replace(/_/g, "/");
+  const bytes = Uint8Array.from(atob(b), c => c.charCodeAt(0));
+  return JSON.parse(new TextDecoder().decode(bytes));
 }
+$("importBtnMsg").onclick = () => {
+  let data;
+  try{ data = decodeCode($("importText").value); }catch(e){ data = null; }
+  if(!data || !data.a){ $("importMsg").textContent = "Não encontrei o código de respostas na mensagem. Cole a mensagem completa."; return; }
+  const nm = (data.n || "").trim();
+  let target = nm && Object.values(store).find(c => c.nome.trim().toLowerCase() === nm.toLowerCase());
+  if(!target){ target = (cur.nome.trim() === "" || cur.nome.trim().toLowerCase() === nm.toLowerCase()) ? cur : blank(); }
+  norm(target); if(nm) target.nome = nm;
+  Object.entries(data.a).forEach(([id, a]) => { target.answers[id] = {v: a.v ?? "", note: a.note ?? ""}; });
+  target.updated = Date.now(); store[target.id] = target; writeLS(KEY, store);
+  cur = target; writeLS(CUR_KEY, cur.id); renderForm();
+  $("importText").value = ""; $("importMsg").textContent = `Respostas de ${nm || "cliente"} importadas.`;
+};
 
 /* ---------- Rentabilidade ---------- */
 const brl = n => n.toLocaleString("pt-BR", {style:"currency", currency:"BRL", maximumFractionDigits:0});
@@ -616,28 +813,21 @@ function simulate(ocupMul, valMul){
   const adm = (num("adm") || 0) / 100, fixos = num("fixos") || 0;
   const valoriz = ((num("valoriz") || 0) / 100) * valMul, horiz = Math.max(Math.round(num("horiz") || 10), 1);
   const o = Math.min(ocup * ocupMul, 95) / 100;
-  const bruta = (365 - uso) * o * diaria;
-  const liq = bruta - bruta * adm - fixos * 12;
-  const proj = valor * Math.pow(1 + valoriz, horiz);
-  return {bruta, liq, yield: liq / valor * 100, mes: liq / 12, proj, total: (proj - valor) + liq * horiz, horiz, valor};
+  const bruta = (365 - uso) * o * diaria, liq = bruta - bruta * adm - fixos * 12, proj = valor * Math.pow(1 + valoriz, horiz);
+  return {bruta, liq, yield: liq / valor * 100, mes: liq / 12, proj, total: (proj - valor) + liq * horiz, horiz};
 }
 function renderRent(){
   const fn = firstName();
   $("rent-for").textContent = fn ? `Premissas definidas em conjunto com ${fn}, a partir da curadoria.` : "Premissas definidas em conjunto, a partir da sua curadoria.";
-  const b = simulate(1, 1);
-  const set = (id, v) => $(id).textContent = v;
+  const b = simulate(1, 1), set = (id, v) => $(id).textContent = v;
   if(!b){ ["o-bruta","o-liq","o-yield","o-mes","o-proj","o-total"].forEach(id => set(id, "—")); $("scen-body").innerHTML = '<tr><td colspan="4" class="muted" style="text-align:left">Preencha valor, diária e ocupação para ver a simulação.</td></tr>'; return; }
   set("o-bruta", brl(b.bruta)); set("o-liq", brl(b.liq)); set("o-yield", pct(b.yield) + " a.a."); set("o-mes", brl(b.mes));
   set("o-proj", brl(b.proj)); set("k-proj", `Valor do ativo em ${b.horiz} anos`); set("o-total", brl(b.total));
   const s = [simulate(0.8, 0.5), b, simulate(1.15, 1.5)];
   const rows = [["Resultado líquido anual", x => brl(x.liq)], ["Rentabilidade líquida", x => pct(x.yield) + " a.a."], [`Valor do ativo em ${b.horiz} anos`, x => brl(x.proj)], ["Ganho total no horizonte", x => brl(x.total)]];
   const tb = $("scen-body"); tb.innerHTML = "";
-  rows.forEach(([label, f]) => {
-    const tr = document.createElement("tr");
-    const th = document.createElement("td"); th.textContent = label; tr.appendChild(th);
-    s.forEach((x, i) => { const td = document.createElement("td"); td.textContent = f(x); if(i === 1) td.className = "base"; tr.appendChild(td); });
-    tb.appendChild(tr);
-  });
+  rows.forEach(([label, f]) => { const tr = document.createElement("tr"); const th = document.createElement("td"); th.textContent = label; tr.appendChild(th);
+    s.forEach((x, i) => { const td = document.createElement("td"); td.textContent = f(x); if(i === 1) td.className = "base"; tr.appendChild(td); }); tb.appendChild(tr); });
 }
 document.querySelectorAll("[data-rent]").forEach(i => i.addEventListener("input", () => { cur.rent[i.dataset.rent] = i.value; renderRent(); save(); }));
 document.querySelectorAll("[data-prop]").forEach(i => i.addEventListener("input", () => { cur.prop[i.dataset.prop] = i.value; save(); }));
@@ -646,145 +836,112 @@ document.querySelectorAll("[data-prop]").forEach(i => i.addEventListener("input"
 function fmtDate(s){ if(!s) return ""; const [y,m,d] = s.split("-"); return `${d}/${m}/${y}`; }
 function addSection(parent, title, content){
   const h = document.createElement("h4"); h.textContent = title; parent.appendChild(h);
-  if(Array.isArray(content)){
-    const ol = document.createElement("ol"); ol.className = "prio";
-    content.forEach(x => { const li = document.createElement("li"); li.textContent = x; ol.appendChild(li); });
-    parent.appendChild(ol);
-  } else { const p = document.createElement("div"); p.className = "ans"; p.textContent = content; parent.appendChild(p); }
+  if(Array.isArray(content)){ const ol = document.createElement("ol"); ol.className = "prio"; content.forEach(x => { const li = document.createElement("li"); li.textContent = x; ol.appendChild(li); }); parent.appendChild(ol); }
+  else { const p = document.createElement("div"); p.className = "ans"; p.textContent = content; parent.appendChild(p); }
 }
-function val(id){ const a = cur.answers[id]; if(!a) return ""; const v = Array.isArray(a.v) ? "" : String(a.v||"").trim(); const n = String(a.note||"").trim(); return [v,n].filter(Boolean).join(" — "); }
-
-function renderTese(){
+function renderProposta(){
   const nm = cur.nome.trim();
   $("t-nome").textContent = nm || "—";
   $("t-for").textContent = `Curadoria preparada exclusivamente para ${firstName() || "você"}${cur.data ? " · " + fmtDate(cur.data) : ""}`;
-
   const heard = $("t-heard"); heard.innerHTML = "";
-  const items = [
-    ["O que você quer construir", val(4)],
-    ["Suas prioridades", (cur.answers[5] && Array.isArray(cur.answers[5].v) && cur.answers[5].v.length) ? cur.answers[5].v : ""],
-    ["Além do financeiro", val(6)],
-    ["Horizonte", val(11)],
-    ["Uso do imóvel", val(14)],
-    ["Envolvimento na gestão", val(15)],
-    ["O que não pode faltar", val(24)],
-    ["Estrutura da compra", [val(18), val(19)].filter(Boolean).join(" · ")]
-  ].filter(([,c]) => c && c.length);
-  if(items.length){
-    const intro = document.createElement("h4"); intro.textContent = "O que ouvi de você"; intro.style.marginTop = "0";
-    heard.appendChild(intro);
-    items.forEach(([t,c]) => addSection(heard, t, c));
-  } else {
-    const p = document.createElement("p"); p.className = "empty-doc noprint";
-    p.textContent = "Preencha a aba Curadoria personalizada para que as respostas apareçam aqui.";
-    heard.appendChild(p);
-  }
-
-  $("tese").value = cur.tese || "";
-  $("tese-print").textContent = cur.tese || "";
-
+  const prio = cur.answers[5] && Array.isArray(cur.answers[5].v) && cur.answers[5].v.length ? cur.answers[5].v : "";
+  const items = [["O que você quer construir", val(4)], ["Suas prioridades", prio], ["Além do financeiro", val(6)], ["Horizonte", val(11)], ["Uso do imóvel", val(14)], ["Envolvimento na gestão", val(15)], ["O que não pode faltar", val(24)], ["Estrutura da compra", [val(18), val(19)].filter(Boolean).join(" · ")]].filter(([,c]) => c && c.length);
+  if(items.length){ const intro = document.createElement("h4"); intro.textContent = "O que ouvi de você"; intro.style.marginTop = "0"; heard.appendChild(intro); items.forEach(([t,c]) => addSection(heard, t, c)); }
+  else { const p = document.createElement("p"); p.className = "empty-doc noprint"; p.textContent = "As respostas do diagnóstico aparecem aqui."; heard.appendChild(p); }
+  $("tese").value = cur.tese || ""; $("tese-print").textContent = cur.tese || "";
   const paths = $("paths"); paths.innerHTML = "";
   cur.caminhos.forEach((c, i) => {
-    const el = document.createElement("div"); el.className = "path";
-    el.innerHTML = `<div class="pn">Caminho ${i+1}</div>`;
+    const el = document.createElement("div"); el.className = "path" + (!c.t && !c.d ? " print-empty" : ""); el.innerHTML = `<div class="pn">Caminho ${i+1}</div>`;
     const ti = document.createElement("input"); ti.placeholder = "Título do caminho"; ti.value = c.t;
     const de = document.createElement("textarea"); de.placeholder = "Por que este caminho faz sentido para você…"; de.value = c.d;
     const pt = document.createElement("div"); pt.className = "print-out ans"; pt.style.fontSize = "22px"; pt.textContent = c.t;
     const pd = document.createElement("div"); pd.className = "print-out"; pd.textContent = c.d;
-    ti.addEventListener("input", () => { c.t = ti.value; pt.textContent = c.t; save(); });
-    de.addEventListener("input", () => { c.d = de.value; pd.textContent = c.d; save(); });
-    el.append(ti, de, pt, pd);
-    if(!c.t && !c.d) el.classList.add("print-empty");
-    paths.appendChild(el);
+    ti.oninput = () => { c.t = ti.value; pt.textContent = c.t; save(); };
+    de.oninput = () => { c.d = de.value; pd.textContent = c.d; save(); };
+    el.append(ti, de, pt, pd); paths.appendChild(el);
   });
-
-  const offer = $("t-offer"); offer.innerHTML = "";
-  const p = cur.prop;
+  const offer = $("t-offer"); offer.innerHTML = ""; const p = cur.prop;
   if(p.imovel) addSection(offer, "Imóvel proposto", p.imovel);
   if(parseFloat(p.valor) > 0) addSection(offer, "Valor", brl(parseFloat(p.valor)));
   if(p.condicoes && p.condicoes.trim()) addSection(offer, "Condições", p.condicoes.trim());
   if(p.validade) addSection(offer, "Validade da proposta", fmtDate(p.validade));
-
-  const rent = $("t-rent"); rent.innerHTML = "";
-  const b = simulate(1, 1);
+  const rent = $("t-rent"); rent.innerHTML = ""; const b = simulate(1, 1);
   if(b) addSection(rent, "Simulação de rentabilidade (cenário base)", `Resultado líquido anual estimado de ${brl(b.liq)} (${pct(b.yield)} ao ano) e valor projetado do ativo de ${brl(b.proj)} em ${b.horiz} anos.\nSimulação ilustrativa, sem garantia de rentabilidade.`);
-
-  const next = $("t-next"); next.innerHTML = "";
-  const nd = cur.answers[30] && cur.answers[30].v;
+  const next = $("t-next"); next.innerHTML = ""; const nd = cur.answers[30] && cur.answers[30].v;
   if(nd) addSection(next, "Próximo passo", `Nossa próxima conversa: ${fmtDate(nd)}${cur.answers[28] && cur.answers[28].v ? " · formato: " + cur.answers[28].v.toLowerCase() : ""}`);
 }
 $("tese").addEventListener("input", e => { cur.tese = e.target.value; $("tese-print").textContent = cur.tese; save(); });
-$("printTese").addEventListener("click", () => window.print());
+$("printTese").onclick = () => window.print();
 
-/* ---------- Clientes ---------- */
+/* ---------- Clientes e ajustes ---------- */
 function renderList(){
   const tb = $("clist"); tb.innerHTML = "";
   const list = Object.values(store).sort((a,b) => b.updated - a.updated);
-  if(!list.length){
-    const tr = document.createElement("tr"); const td = document.createElement("td"); td.colSpan = 4; td.className = "muted";
-    td.textContent = "Nenhum cliente salvo ainda."; tr.appendChild(td); tb.appendChild(tr); return;
-  }
+  if(!list.length){ tb.innerHTML = '<tr><td colspan="4" class="muted">Nenhum cliente salvo ainda.</td></tr>'; return; }
   list.forEach(c => {
     const tr = document.createElement("tr");
-    const done = ALL_Q.filter(q => { const a = c.answers[q.id]; return a && ((Array.isArray(a.v)?a.v.length:String(a.v||"").trim()) || String(a.note||"").trim()); }).length;
+    const done = ALL_Q.filter(q => filled(c.answers[q.id])).length;
     const n = document.createElement("td"); n.className = "nm"; n.textContent = c.nome || "Sem nome";
-    if(c.id === cur.id){ const s = document.createElement("span"); s.className = "muted"; s.style.cssText = "font-family:var(--sans);font-size:11px;margin-left:8px"; s.textContent = "aberto"; n.appendChild(s); }
     const p = document.createElement("td"); p.textContent = `${done}/30`;
     const u = document.createElement("td"); u.className = "muted"; u.textContent = new Date(c.updated).toLocaleDateString("pt-BR");
     const act = document.createElement("td"); act.className = "act";
-    const open = document.createElement("button"); open.className = "btn"; open.textContent = "Abrir";
-    open.onclick = () => { cur = norm(c); writeLS(CUR_KEY, cur.id); renderForm(); showTab("curadoria"); };
+    const open = document.createElement("button"); open.className = "btn"; open.textContent = c.id === cur.id ? "Aberto" : "Abrir";
+    open.onclick = () => { cur = norm(c); writeLS(CUR_KEY, cur.id); renderForm(); showTab("regiao"); };
     const del = document.createElement("button"); del.className = "link"; del.textContent = "Excluir";
-    del.onclick = () => {
-      if(!confirm(`Excluir a curadoria de ${c.nome || "este cliente"}? Esta ação não pode ser desfeita.`)) return;
-      delete store[c.id]; writeLS(KEY, store);
-      if(c.id === cur.id){ cur = blank(); renderForm(); }
-      renderList();
-    };
-    act.append(open, del);
-    tr.append(n, p, u, act); tb.appendChild(tr);
+    del.onclick = () => { if(!confirm(`Excluir a curadoria de ${c.nome || "este cliente"}? Esta ação não pode ser desfeita.`)) return;
+      delete store[c.id]; writeLS(KEY, store); if(c.id === cur.id){ cur = blank(); renderForm(); } renderList(); };
+    act.append(open, del); tr.append(n, p, u, act); tb.appendChild(tr);
   });
 }
-$("exportBtn").addEventListener("click", () => {
+$("exportBtn").onclick = () => {
   if(hasContent(cur)) store[cur.id] = cur;
-  const blob = new Blob([JSON.stringify(store, null, 2)], {type:"application/json"});
+  const blob = new Blob([JSON.stringify({version:2, clientes:store, catalogo:catalog, ajustes:settings}, null, 2)], {type:"application/json"});
   const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = `curadoria-backup-${today()}.json`; a.click();
   setTimeout(() => URL.revokeObjectURL(a.href), 1000);
-});
-$("importBtn").addEventListener("click", () => $("importFile").click());
-$("importFile").addEventListener("change", e => {
+};
+$("importBtn").onclick = () => $("importFile").click();
+$("importFile").onchange = e => {
   const f = e.target.files[0]; if(!f) return;
   const r = new FileReader();
   r.onload = () => {
-    try{ const data = JSON.parse(r.result); Object.assign(store, data); writeLS(KEY, store); renderList(); alert("Backup importado."); }
-    catch(err){ alert("Arquivo inválido."); }
+    try{
+      const d = JSON.parse(r.result);
+      if(d.version === 2){ Object.assign(store, d.clientes || {}); (d.catalogo || []).forEach(p => { if(!catalog.find(x => x.id === p.id)) catalog.push(p); }); if(d.ajustes) settings = Object.assign(settings, d.ajustes); }
+      else Object.assign(store, d);
+      writeLS(KEY, store); saveCatalog(); writeLS(SET_KEY, settings); loadSettings(); buildCover(); renderList(); renderCuradoria(); alert("Backup importado.");
+    }catch(err){ alert("Arquivo inválido."); }
     e.target.value = "";
   };
   r.readAsText(f);
-});
+};
+function loadSettings(){ $("set-whats").value = settings.whats || ""; $("set-videos").value = settings.videos || ""; }
+$("set-whats").oninput = e => { settings.whats = e.target.value; writeLS(SET_KEY, settings); };
+$("set-videos").onchange = e => { settings.videos = e.target.value; writeLS(SET_KEY, settings); buildCover(); };
 
-$("newClient").addEventListener("click", () => {
+$("newClient").onclick = () => {
   if(hasContent(cur)){ store[cur.id] = cur; writeLS(KEY, store); }
-  cur = blank(); writeLS(CUR_KEY, cur.id); renderForm(); showTab("curadoria");
+  cur = blank(); writeLS(CUR_KEY, cur.id); renderForm(); showTab("diagnostico");
   window.scrollTo({top:0, behavior:"smooth"}); $("nome").focus();
-});
+};
 
-/* ---------- Tabs & mode ---------- */
+/* ---------- Abas ---------- */
 function showTab(name){
   document.querySelectorAll(".tab-btn").forEach(b => b.setAttribute("aria-selected", b.dataset.tab === name));
   document.querySelectorAll(".tab").forEach(t => t.classList.toggle("active", t.id === "tab-" + name));
-  if(name === "proposta") renderTese();
-  if(name === "regiao") renderRegiao();
+  if(name === "regiao"){ renderRegiao(); fitFrames(); }
+  if(name === "curadoria") renderCuradoria();
   if(name === "rentabilidade") renderRent();
+  if(name === "proposta") renderProposta();
   if(name === "clientes") renderList();
 }
 document.querySelectorAll(".tab-btn").forEach(b => b.addEventListener("click", () => showTab(b.dataset.tab)));
 $("present").addEventListener("change", e => {
   document.body.classList.toggle("present", e.target.checked);
-  if(e.target.checked && document.querySelector('.tab-btn[data-tab="clientes"]').getAttribute("aria-selected") === "true") showTab("curadoria");
+  const active = document.querySelector('.tab-btn[aria-selected="true"]');
+  if(e.target.checked && active.classList.contains("only-internal")) showTab("regiao");
 });
 
-renderForm();
+loadSettings(); renderForm(); buildCover();
 </script>
 </body>
 </html>

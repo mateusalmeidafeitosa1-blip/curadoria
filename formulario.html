@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Curadoria Privada · Mateus Almeida</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F5F1E8; --paper:#FFFDF8; --ink:#1E2923; --muted:#6E6C62; --line:#E2DACA;
+  --accent:#2E4A3B; --sand:#B89B6A; --sand-soft:#F1E8D8; --sea:#5B8A87;
+  --serif:"Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --sans:"Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55}
+button,input,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+[hidden]{display:none!important}
+.top{background:var(--paper);border-bottom:1px solid var(--line)}
+.top-in{max-width:720px;margin:0 auto;padding:18px 20px;display:flex;align-items:center;gap:14px}
+.mono{width:42px;height:42px;border:1px solid var(--sand);border-radius:50%;display:grid;place-items:center;font-family:var(--serif);font-size:18px;color:var(--accent)}
+.name{font-family:var(--serif);font-size:22px;font-weight:500;line-height:1.1}
+.sub{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+main{max-width:720px;margin:0 auto;padding:24px 20px 80px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:32px;margin-bottom:16px}
+.eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--sand);font-weight:500}
+.hero{text-align:center;padding:48px 32px;background:var(--paper) radial-gradient(ellipse at top,var(--sand-soft),transparent 70%)}
+.hero h1{font-family:var(--serif);font-weight:400;font-size:44px;line-height:1.1;margin:12px 0 10px}
+.hero p{font-family:var(--serif);font-size:20px;font-style:italic;color:var(--muted);margin:0 auto;max-width:520px}
+.meta{display:flex;justify-content:center;gap:24px;flex-wrap:wrap;margin-top:22px;font-size:13px;color:var(--muted)}
+.progress{margin:6px 0 18px}
+.progress-txt{font-size:12px;color:var(--muted);margin-bottom:6px;display:flex;justify-content:space-between}
+.bar{height:4px;background:var(--line);border-radius:4px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--sea),var(--accent));transition:width .3s}
+.step-head{margin-bottom:6px}
+.step-title{font-family:var(--serif);font-size:32px;font-weight:500;line-height:1.1;margin:6px 0 2px}
+.step-sub{font-size:13px;color:var(--muted)}
+.q{margin-top:28px}
+.q-text{font-family:var(--serif);font-size:22px;line-height:1.3;font-weight:500;margin-bottom:10px}
+.q-help{font-size:13px;color:var(--muted);margin:-4px 0 10px}
+textarea,.text-in{width:100%;border:1px solid var(--line);border-radius:10px;background:#FFFEFB;padding:12px 14px;outline:none;line-height:1.5}
+textarea{min-height:90px;resize:vertical}
+textarea.note{min-height:56px;margin-top:10px}
+textarea:focus,.text-in:focus{border-color:var(--sand);box-shadow:0 0 0 3px var(--sand-soft)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1px solid var(--line);background:#FFFEFB;padding:10px 16px;border-radius:999px;font-size:14px;display:inline-flex;align-items:center;gap:8px}
+.chip:hover{border-color:var(--sand)}
+.chip.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.chip .rk{width:20px;height:20px;border-radius:50%;background:#fff;color:var(--accent);font-size:12px;font-weight:600;display:grid;place-items:center}
+.nav{display:flex;justify-content:space-between;gap:12px;margin-top:28px}
+.btn{border:1px solid var(--line);background:var(--paper);padding:12px 22px;border-radius:999px;font-size:14px;letter-spacing:.03em}
+.btn:hover{border-color:var(--sand)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.wa{background:#1F7A4D;border-color:#1F7A4D;color:#fff}
+.final{text-align:center}
+.final h2{font-family:var(--serif);font-weight:400;font-size:36px;margin:10px 0}
+.final p{color:var(--muted);max-width:480px;margin:0 auto 18px}
+.final .row{display:flex;flex-direction:column;gap:10px;align-items:center}
+.small{font-size:12px;color:var(--muted)}
+.belief{text-align:center;font-family:var(--serif);font-style:italic;font-size:18px;color:var(--muted);margin-top:28px}
+@media (max-width:600px){ .card{padding:22px} .hero h1{font-size:34px} .step-title{font-size:28px} .q-text{font-size:20px} }
+</style>
+</head>
+<body>
+<header class="top"><div class="top-in"><div class="mono">MA</div><div><div class="name">Mateus Almeida</div><div class="sub">Curadoria Privada · Rota Ecológica dos Milagres</div></div></div></header>
+
+<main>
+  <section id="intro">
+    <div class="card hero">
+      <div class="eyebrow">Curadoria personalizada</div>
+      <h1 id="hello">Antes da nossa conversa</h1>
+      <p>Antes de qualquer imóvel, quero entender quem você é e o que deseja construir. Suas respostas guiam uma curadoria pensada só para você.</p>
+      <div class="meta"><span>Cerca de 10 minutos</span><span>Todas as perguntas são opcionais</span><span>Respostas confidenciais</span></div>
+    </div>
+    <div class="card" id="nameCard">
+      <div class="q" style="margin-top:0"><div class="q-text">Como você gostaria de ser chamado?</div><input class="text-in" id="clientName" autocomplete="name"></div>
+    </div>
+    <div style="text-align:center"><button class="btn primary" id="start">Começar</button></div>
+    <p class="belief">“O verdadeiro luxo não está dentro das paredes, está no que existe ao redor delas.”</p>
+  </section>
+
+  <section id="steps" hidden>
+    <div class="progress"><div class="progress-txt"><span id="stepCount"></span><span id="saved" class="small"></span></div><div class="bar"><i id="pbar"></i></div></div>
+    <div class="card" id="stepCard"></div>
+    <div class="nav"><button class="btn" id="back">Voltar</button><button class="btn primary" id="next">Continuar</button></div>
+  </section>
+
+  <section id="done" hidden>
+    <div class="card final">
+      <div class="eyebrow">Obrigado</div>
+      <h2 id="thanks">Respostas prontas</h2>
+      <p id="doneText">Envie suas respostas para mim pelo WhatsApp. Elas chegam organizadas para a nossa conversa.</p>
+      <div class="row">
+        <button class="btn wa" id="sendWa">Enviar pelo WhatsApp</button>
+        <button class="btn" id="copyBtn">Copiar respostas</button>
+        <span class="small" id="copyMsg"></span>
+        <button class="btn" id="edit" style="margin-top:6px">Revisar respostas</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+const BLOCKS = [
+  {t:"Contexto", s:"O momento e o caminho até aqui", q:[
+    {id:1, text:"O que te trouxe a buscar um investimento como este agora?"},
+    {id:2, text:"Como você chegou até mim? Alguém te indicou?"},
+    {id:3, text:"Conte um pouco da sua trajetória. Como chegou onde está hoje?"}]},
+  {t:"Objetivo", s:"O que este investimento precisa realizar", q:[
+    {id:4, text:"Imagine que daqui a 5 anos este investimento deu muito certo. O que aconteceu?"},
+    {id:5, type:"rank", text:"Entre renda recorrente, valorização e proteção de patrimônio, o que vem primeiro para você?", help:"Toque nas opções na ordem da sua prioridade.", options:["Renda recorrente","Valorização","Proteção de patrimônio"]},
+    {id:6, text:"Este imóvel tem algum papel além do financeiro? Família, legado, um lugar seu?"}]},
+  {t:"Experiência", s:"O que você já construiu", q:[
+    {id:7, text:"Que imóveis você já tem hoje, e onde?"},
+    {id:8, text:"Qual foi o melhor e o pior investimento que você já fez, e o que aprendeu com cada um?"},
+    {id:9, type:"chips", text:"Já teve imóvel em locação por temporada?", help:"Se quiser, conte como foi.", options:["Sim","Não"]},
+    {id:10, text:"Fora de imóveis, onde está concentrado o seu patrimônio hoje?", help:"Opcional. Responda só se se sentir à vontade."}]},
+  {t:"Horizonte", s:"O tempo do investimento", q:[
+    {id:11, type:"chips", text:"Por quanto tempo você pensa em manter este ativo?", options:["Até 3 anos","3 a 5 anos","5 a 10 anos","Mais de 10 anos / legado"]},
+    {id:12, text:"Em quanto tempo espera começar a ter retorno?"},
+    {id:13, text:"Em que situação você venderia?"}]},
+  {t:"Uso e envolvimento", s:"Como o imóvel entra na sua vida", q:[
+    {id:14, type:"chips", text:"Você pretende usar o imóvel? Quantas semanas por ano?", help:"Se quiser, diga em que época.", options:["Não pretendo usar","Até 2 semanas","3 a 6 semanas","Mais de 6 semanas"]},
+    {id:15, type:"chips", text:"Prefere acompanhar a gestão de perto ou receber relatórios?", options:["Acompanhar de perto","Relatórios periódicos","Não quero me envolver"]},
+    {id:16, text:"Quem viria com você?"}]},
+  {t:"Estrutura e decisão", s:"Os caminhos para concretizar", q:[
+    {id:17, text:"Qual faixa de investimento faz sentido para este movimento?", help:"Opcional. Podemos conversar sobre isso na call."},
+    {id:18, type:"chips", text:"Os recursos seriam próprios, ou você pensa em financiamento ou permuta?", options:["Recursos próprios","Financiamento","Permuta","Combinação"]},
+    {id:19, type:"chips", text:"Você compraria como pessoa física, empresa ou holding?", help:"Se já tiver assessoria para isso, conte.", options:["Pessoa física","Empresa","Holding","A definir"]},
+    {id:20, text:"Quem mais participa desta decisão?"},
+    {id:21, text:"Qual o seu prazo ideal para concretizar?"}]},
+  {t:"Perfil e valores", s:"O que define luxo para você", q:[
+    {id:22, text:"Quando viaja, que tipo de lugar escolhe? O que te faz voltar a um lugar?"},
+    {id:23, text:"O que é luxo para você?"},
+    {id:24, text:"O que não pode faltar de jeito nenhum, e o que te faria desistir de um imóvel?"},
+    {id:25, text:"O que mais te incomodou em experiências anteriores com corretores ou incorporadoras?"}]},
+  {t:"Para fechar", s:"Nossa conversa", q:[
+    {id:26, text:"Tem algo que eu não perguntei e que eu deveria saber?"},
+    {id:28, type:"chips", text:"Como você prefere receber a sua proposta?", options:["Reunião","Vídeo","Documento"]},
+    {id:29, text:"Qual o melhor canal e horário para conversarmos?"}]}
+];
+const $ = id => document.getElementById(id);
+const params = new URLSearchParams(location.hash.slice(1));
+const WHATS = (params.get("w") || "").replace(/\D/g, "");
+const DRAFT = "curadoria.formulario.rascunho";
+function readLS(k, fb){ try{ const v = localStorage.getItem(k); return v ? JSON.parse(v) : fb; }catch(e){ return fb; } }
+function writeLS(k, v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){} }
+
+let state = readLS(DRAFT, null);
+if(!state || (params.get("n") && state.n !== params.get("n"))) state = {n: params.get("n") || "", a:{}, step:0};
+const first = () => (state.n || "").trim().split(/\s+/)[0];
+
+function paintIntro(){
+  $("hello").textContent = first() ? `Curadoria personalizada para ${first()}` : "Antes da nossa conversa";
+  $("clientName").value = state.n;
+  document.title = first() ? `Curadoria · ${state.n}` : "Curadoria Privada · Mateus Almeida";
+}
+$("clientName").oninput = e => { state.n = e.target.value; writeLS(DRAFT, state); paintIntro(); };
+$("start").onclick = () => { $("intro").hidden = true; $("steps").hidden = false; renderStep(); window.scrollTo(0, 0); };
+
+function A(id){ return state.a[id] || (state.a[id] = {v:"", note:""}); }
+function renderStep(){
+  const b = BLOCKS[state.step];
+  $("stepCount").textContent = `Etapa ${state.step + 1} de ${BLOCKS.length}`;
+  $("pbar").style.width = ((state.step) / BLOCKS.length * 100) + "%";
+  $("back").style.visibility = "visible";
+  $("next").textContent = state.step === BLOCKS.length - 1 ? "Concluir" : "Continuar";
+  const card = $("stepCard"); card.innerHTML = "";
+  const head = document.createElement("div"); head.className = "step-head";
+  head.innerHTML = `<div class="eyebrow">${String(state.step + 1).padStart(2, "0")}</div><div class="step-title">${b.t}</div><div class="step-sub">${b.s}</div>`;
+  card.appendChild(head);
+  b.q.forEach(q => {
+    const a = A(q.id); const wrap = document.createElement("div"); wrap.className = "q";
+    const t = document.createElement("div"); t.className = "q-text"; t.textContent = q.text; wrap.appendChild(t);
+    if(q.help){ const h = document.createElement("div"); h.className = "q-help"; h.textContent = q.help; wrap.appendChild(h); }
+    if(q.type){
+      if(q.type === "rank" && !Array.isArray(a.v)) a.v = [];
+      const chips = document.createElement("div"); chips.className = "chips";
+      const paint = () => chips.querySelectorAll(".chip").forEach(c => { const o = c.dataset.opt;
+        if(q.type === "rank"){ const r = a.v.indexOf(o) + 1; c.classList.toggle("on", r > 0); c.innerHTML = r ? `<span class="rk">${r}</span>` : ""; c.appendChild(document.createTextNode(o)); }
+        else { c.classList.toggle("on", a.v === o); c.textContent = o; } });
+      q.options.forEach(o => { const c = document.createElement("button"); c.type = "button"; c.className = "chip"; c.dataset.opt = o;
+        c.onclick = () => { if(q.type === "rank"){ const i = a.v.indexOf(o); i >= 0 ? a.v.splice(i, 1) : a.v.push(o); } else a.v = a.v === o ? "" : o; paint(); persist(); };
+        chips.appendChild(c); });
+      paint(); wrap.appendChild(chips);
+      const n = document.createElement("textarea"); n.className = "note"; n.placeholder = "Comentário (opcional)"; n.value = a.note || "";
+      n.oninput = () => { a.note = n.value; persist(); }; wrap.appendChild(n);
+    } else {
+      const ta = document.createElement("textarea"); ta.placeholder = "Sua resposta"; ta.value = a.v || "";
+      ta.oninput = () => { a.v = ta.value; persist(); }; wrap.appendChild(ta);
+    }
+    card.appendChild(wrap);
+  });
+}
+let savedT;
+function persist(){ writeLS(DRAFT, state); $("saved").textContent = "Rascunho salvo"; clearTimeout(savedT); savedT = setTimeout(() => $("saved").textContent = "", 1500); }
+$("next").onclick = () => {
+  if(state.step < BLOCKS.length - 1){ state.step++; persist(); renderStep(); window.scrollTo(0, 0); }
+  else { $("steps").hidden = true; $("done").hidden = false; paintDone(); window.scrollTo(0, 0); }
+};
+$("back").onclick = () => {
+  if(state.step > 0){ state.step--; persist(); renderStep(); window.scrollTo(0, 0); }
+  else { $("steps").hidden = true; $("intro").hidden = false; }
+};
+$("edit").onclick = () => { $("done").hidden = true; $("steps").hidden = false; state.step = 0; renderStep(); window.scrollTo(0, 0); };
+
+function filled(a){ if(!a) return false; const v = Array.isArray(a.v) ? a.v.length : String(a.v || "").trim(); return !!(v || String(a.note || "").trim()); }
+function buildMessage(){
+  const lines = [`Curadoria personalizada · respostas de ${state.n.trim() || "cliente"}`, ""];
+  const out = {};
+  BLOCKS.forEach(b => b.q.forEach(q => {
+    const a = state.a[q.id]; if(!filled(a)) return;
+    out[q.id] = {v: a.v, note: a.note || ""};
+    const v = Array.isArray(a.v) ? a.v.map((x, i) => `${i + 1}. ${x}`).join("  ") : String(a.v || "").trim();
+    lines.push(`*${q.text}*`); if(v) lines.push(v); if(a.note && a.note.trim()) lines.push(a.note.trim()); lines.push("");
+  }));
+  const bytes = new TextEncoder().encode(JSON.stringify({n: state.n.trim(), a: out}));
+  let bin = ""; bytes.forEach(b => bin += String.fromCharCode(b));
+  lines.push("Código para importação (não apague):", "CUR1:" + btoa(bin));
+  return lines.join("\n");
+}
+function paintDone(){
+  $("thanks").textContent = first() ? `Obrigado, ${first()}` : "Obrigado";
+  $("sendWa").hidden = !WHATS;
+  $("doneText").textContent = WHATS ? "Envie suas respostas para mim pelo WhatsApp. Elas chegam organizadas para a nossa conversa." : "Copie suas respostas e envie para mim pelo WhatsApp ou e-mail.";
+}
+$("sendWa").onclick = () => { window.open(`https://wa.me/${WHATS}?text=${encodeURIComponent(buildMessage())}`, "_blank"); };
+$("copyBtn").onclick = async () => {
+  try{ await navigator.clipboard.writeText(buildMessage()); $("copyMsg").textContent = "Respostas copiadas."; }
+  catch(e){ $("copyMsg").textContent = "Não foi possível copiar automaticamente."; }
+};
+paintIntro();
+</script>
+</body>
+</html>
