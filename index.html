@@ -135,7 +135,47 @@ body.present .internal, body.present .star, body.present .hint, body.present .on
 .list-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
 .muted{color:var(--muted)}
 
+/* Região */
+.region-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-bottom:18px}
+.region-grid .card{margin:0}
+.r-card h3{font-family:var(--serif);font-weight:500;font-size:24px;margin:8px 0 10px;line-height:1.2}
+.r-card p{margin:0 0 8px;color:#3A443E}
+.r-card ul{margin:6px 0 0;padding-left:18px;color:#3A443E}
+.r-card li{margin:4px 0}
+.towns{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.town{border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-size:12px;letter-spacing:.04em;background:#FFFEFB}
+.wide{grid-column:1/-1}
+.for-you .ans{font-family:var(--serif);font-size:20px;line-height:1.45;white-space:pre-wrap;margin-bottom:6px}
+.for-you h4{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--sand);font-weight:500;margin:18px 0 6px}
+
+/* Rentabilidade */
+.rent-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px 22px}
+.field label{display:block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.field .in{display:flex;align-items:center;border:1px solid var(--line);border-radius:10px;background:#FFFEFB;padding:0 12px}
+.field .in:focus-within{border-color:var(--sand);box-shadow:0 0 0 3px var(--sand-soft)}
+.field .in span{font-size:13px;color:var(--muted)}
+.field input{flex:1;min-width:0;border:0;background:transparent;padding:11px 8px;outline:none;font-size:15px}
+.field small{display:block;font-size:11px;color:var(--muted);margin-top:4px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:6px}
+.stat{border:1px solid var(--line);border-radius:12px;padding:16px;background:#FFFEFB}
+.stat .k{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.stat .v{font-family:var(--serif);font-size:28px;line-height:1.15;margin-top:6px;color:var(--accent)}
+.scen{width:100%;border-collapse:collapse;margin-top:8px;font-size:14px}
+.scen th,.scen td{padding:10px 8px;border-bottom:1px solid var(--line);text-align:right}
+.scen th:first-child,.scen td:first-child{text-align:left}
+.scen th{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.scen td.base{font-weight:600;color:var(--accent)}
+.disclaimer{font-size:12px;color:var(--muted);margin-top:16px;line-height:1.5}
+.sec-title{font-family:var(--serif);font-weight:500;font-size:24px;margin:0 0 4px}
+.sec-sub{font-size:13px;color:var(--muted);margin:0 0 18px}
+
+/* Proposta fields */
+.prop-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px 22px}
+.prop-grid .field.wide{grid-column:1/-1}
+.prop-grid textarea{font-family:var(--sans);font-size:15px;min-height:70px}
+
 @media (max-width:640px){
+  .region-grid,.rent-grid,.prop-grid,.stats{grid-template-columns:1fr}
   .card{padding:20px}
   .hero{padding:32px 20px}
   .hero h1,.name-input{font-size:30px}
@@ -177,8 +217,10 @@ body.present .internal, body.present .star, body.present .hint, body.present .on
       </div>
     </div>
     <nav class="tabs" role="tablist">
-      <button class="tab-btn" role="tab" data-tab="curadoria" aria-selected="true">Curadoria personalizada</button>
-      <button class="tab-btn" role="tab" data-tab="tese" aria-selected="false">Tese do cliente</button>
+      <button class="tab-btn" role="tab" data-tab="regiao" aria-selected="true">Região</button>
+      <button class="tab-btn" role="tab" data-tab="curadoria" aria-selected="false">Curadoria personalizada</button>
+      <button class="tab-btn" role="tab" data-tab="rentabilidade" aria-selected="false">Rentabilidade</button>
+      <button class="tab-btn" role="tab" data-tab="proposta" aria-selected="false">Proposta</button>
       <button class="tab-btn only-internal" role="tab" data-tab="clientes" aria-selected="false">Clientes</button>
     </nav>
   </div>
@@ -195,8 +237,65 @@ body.present .internal, body.present .star, body.present .hint, body.present .on
 </div>
 
 <main>
+  <!-- REGIÃO -->
+  <section class="tab active" id="tab-regiao">
+    <div class="card hero">
+      <div class="eyebrow">Região</div>
+      <h1><span class="pre">Alagoas, litoral norte</span>Rota Ecológica dos Milagres</h1>
+      <p class="lead">“O verdadeiro luxo não está dentro das paredes, está no que existe ao redor delas.”</p>
+      <div class="personal" id="r-personal"></div>
+    </div>
+
+    <div class="region-grid">
+      <div class="card r-card">
+        <div class="eyebrow">Onde fica</div>
+        <h3>Entre Maceió e Recife, longe do óbvio</h3>
+        <p>Um trecho do litoral norte de Alagoas que preservou o ritmo das vilas de pescadores, com acesso a partir do aeroporto de Maceió, a cerca de 100 km.</p>
+        <div class="towns"><span class="town">Passo de Camaragibe</span><span class="town">São Miguel dos Milagres</span><span class="town">Porto de Pedras</span></div>
+      </div>
+      <div class="card r-card">
+        <div class="eyebrow">Natureza protegida</div>
+        <h3>Dentro da APA Costa dos Corais</h3>
+        <p>A região integra a maior unidade de conservação federal marinha costeira do Brasil, com recifes que formam piscinas naturais na maré baixa.</p>
+        <p>Em Porto de Pedras, o trabalho de conservação do peixe-boi-marinho é parte da identidade local.</p>
+      </div>
+      <div class="card r-card">
+        <div class="eyebrow">Por que é raro</div>
+        <h3>Escassez que não se fabrica</h3>
+        <ul>
+          <li>Ocupação de baixa densidade e regras de proteção ambiental que limitam a expansão.</li>
+          <li>Poucos empreendimentos de alto padrão à beira-mar.</li>
+          <li>Um destino que atrai um público que busca exclusividade e silêncio.</li>
+        </ul>
+      </div>
+      <div class="card r-card">
+        <div class="eyebrow">Viver Milagres</div>
+        <h3>A experiência em volta do imóvel</h3>
+        <ul>
+          <li>Piscinas naturais e passeios de jangada.</li>
+          <li>Coqueirais, praias largas e mar calmo.</li>
+          <li>Gastronomia autoral e pousadas de charme.</li>
+          <li>Encontro com o peixe-boi-marinho.</li>
+        </ul>
+      </div>
+      <div class="card r-card wide for-you" id="r-foryou" hidden>
+        <div class="eyebrow">Por que a região faz sentido para você</div>
+        <div id="r-foryou-body"></div>
+      </div>
+    </div>
+
+    <div class="card internal">
+      <div class="tag">Uso interno</div>
+      <h3>Como usar esta aba</h3>
+      <ul>
+        <li>Comece a reunião pelo território, antes de qualquer pergunta. Ela cria o contexto da crença.</li>
+        <li>O bloco “Por que a região faz sentido para você” aparece sozinho conforme a curadoria é preenchida.</li>
+      </ul>
+    </div>
+  </section>
+
   <!-- CURADORIA -->
-  <section class="tab active" id="tab-curadoria">
+  <section class="tab" id="tab-curadoria">
     <div class="card hero">
       <div class="eyebrow">Curadoria personalizada</div>
       <h1><span class="pre">Preparada exclusivamente para</span>
@@ -238,14 +337,63 @@ body.present .internal, body.present .star, body.present .hint, body.present .on
     </div>
   </section>
 
-  <!-- TESE -->
-  <section class="tab" id="tab-tese">
+  <!-- RENTABILIDADE -->
+  <section class="tab" id="tab-rentabilidade">
+    <div class="card">
+      <div class="eyebrow">Rentabilidade</div>
+      <h2 class="sec-title">Simulação do investimento</h2>
+      <p class="sec-sub" id="rent-for">Premissas definidas em conjunto, a partir da sua curadoria.</p>
+      <div class="rent-grid">
+        <div class="field"><label>Valor do investimento</label><div class="in"><span>R$</span><input type="number" min="0" step="any" data-rent="valor"></div></div>
+        <div class="field"><label>Diária média</label><div class="in"><span>R$</span><input type="number" min="0" step="any" data-rent="diaria"></div></div>
+        <div class="field"><label>Taxa de ocupação</label><div class="in"><input type="number" min="0" max="100" step="any" data-rent="ocup"><span>%</span></div><small>Sobre as noites disponíveis para locação</small></div>
+        <div class="field"><label>Noites de uso próprio por ano</label><div class="in"><input type="number" min="0" max="365" step="1" data-rent="uso"><span>noites</span></div></div>
+        <div class="field"><label>Taxa de administração</label><div class="in"><input type="number" min="0" max="100" step="any" data-rent="adm"><span>% da receita</span></div></div>
+        <div class="field"><label>Custos fixos mensais</label><div class="in"><span>R$</span><input type="number" min="0" step="any" data-rent="fixos"></div><small>Condomínio, IPTU, manutenção, seguros</small></div>
+        <div class="field"><label>Valorização anual estimada</label><div class="in"><input type="number" step="any" data-rent="valoriz"><span>% ao ano</span></div></div>
+        <div class="field"><label>Horizonte do investimento</label><div class="in"><input type="number" min="1" max="40" step="1" data-rent="horiz"><span>anos</span></div></div>
+      </div>
+    </div>
+
+    <div class="card" id="rent-out">
+      <div class="eyebrow">Resultado (cenário base)</div>
+      <div class="stats">
+        <div class="stat"><div class="k">Receita bruta anual</div><div class="v" id="o-bruta">—</div></div>
+        <div class="stat"><div class="k">Resultado líquido anual</div><div class="v" id="o-liq">—</div></div>
+        <div class="stat"><div class="k">Rentabilidade líquida</div><div class="v" id="o-yield">—</div></div>
+        <div class="stat"><div class="k">Retorno mensal médio</div><div class="v" id="o-mes">—</div></div>
+        <div class="stat"><div class="k" id="k-proj">Valor projetado do ativo</div><div class="v" id="o-proj">—</div></div>
+        <div class="stat"><div class="k">Ganho total no horizonte</div><div class="v" id="o-total">—</div></div>
+      </div>
+
+      <h4 class="eyebrow" style="margin:26px 0 4px">Cenários</h4>
+      <table class="scen">
+        <thead><tr><th></th><th>Conservador</th><th>Base</th><th>Otimista</th></tr></thead>
+        <tbody id="scen-body"></tbody>
+      </table>
+      <p class="disclaimer">Simulação ilustrativa, calculada a partir das premissas acima. Não constitui promessa ou garantia de rentabilidade. Valores antes de impostos. No cenário conservador, a ocupação é 20% menor e a valorização é metade da estimada; no otimista, a ocupação é 15% maior (até 95%) e a valorização é 50% maior.</p>
+    </div>
+  </section>
+
+  <!-- PROPOSTA -->
+  <section class="tab" id="tab-proposta">
+    <div class="card internal">
+      <div class="tag">Uso interno · preencha antes de apresentar</div>
+      <h3>Dados da proposta</h3>
+      <div class="prop-grid">
+        <div class="field wide"><label>Imóvel / unidade proposta</label><div class="in"><input data-prop="imovel" placeholder="Ex.: Unidade 204 · Manta by Pininfarina"></div></div>
+        <div class="field"><label>Valor</label><div class="in"><span>R$</span><input type="number" min="0" step="any" data-prop="valor"></div></div>
+        <div class="field"><label>Validade da proposta</label><div class="in"><input type="date" data-prop="validade"></div></div>
+        <div class="field wide"><label>Condições de pagamento</label><textarea data-prop="condicoes" placeholder="Entrada, parcelas, reforços, permuta…"></textarea></div>
+      </div>
+    </div>
+
     <div class="noprint" style="display:flex;justify-content:flex-end;gap:10px;margin-bottom:12px">
       <button class="btn primary" id="printTese">Imprimir / salvar PDF</button>
     </div>
     <div class="card doc">
       <div class="doc-cover">
-        <div class="eyebrow">Tese de investimento</div>
+        <div class="eyebrow">Proposta de investimento</div>
         <h2 id="t-nome">—</h2>
         <div class="for" id="t-for">Curadoria preparada exclusivamente para você</div>
         <div class="sig">Mateus Almeida · Curadoria Privada · Rota Ecológica dos Milagres</div>
@@ -260,6 +408,8 @@ body.present .internal, body.present .star, body.present .hint, body.present .on
       <h4>Caminhos possíveis</h4>
       <div class="paths" id="paths"></div>
 
+      <div id="t-offer"></div>
+      <div id="t-rent"></div>
       <div id="t-next"></div>
 
       <div class="belief">
@@ -335,12 +485,13 @@ const CUR_KEY = "curadoria.atual.v1";
 const $ = id => document.getElementById(id);
 
 function today(){ const d = new Date(); return new Date(d - d.getTimezoneOffset()*6e4).toISOString().slice(0,10); }
-function blank(){ return {id:"c"+Date.now(), nome:"", cidade:"", data:today(), answers:{}, notas:"", tese:"", caminhos:[{t:"",d:""},{t:"",d:""},{t:"",d:""}], updated:Date.now()}; }
+function blank(){ return {id:"c"+Date.now(), nome:"", cidade:"", data:today(), answers:{}, notas:"", tese:"", caminhos:[{t:"",d:""},{t:"",d:""},{t:"",d:""}], rent:{}, prop:{}, updated:Date.now()}; }
+function norm(c){ c.rent = c.rent || {}; c.prop = c.prop || {}; c.caminhos = c.caminhos || [{t:"",d:""},{t:"",d:""},{t:"",d:""}]; return c; }
 function readLS(k, fb){ try{ const v = localStorage.getItem(k); return v ? JSON.parse(v) : fb; }catch(e){ return fb; } }
 function writeLS(k, v){ try{ localStorage.setItem(k, JSON.stringify(v)); return true; }catch(e){ return false; } }
 
 let store = readLS(KEY, {});
-let cur = store[readLS(CUR_KEY, null)] || blank();
+let cur = norm(store[readLS(CUR_KEY, null)] || blank());
 
 function ans(id){ return cur.answers[id] || (cur.answers[id] = {v:"", note:""}); }
 function answered(id){ const a = cur.answers[id]; if(!a) return false; const v = Array.isArray(a.v) ? a.v.length : String(a.v||"").trim(); return !!(v || String(a.note||"").trim()); }
@@ -370,7 +521,9 @@ function renderForm(){
     b.q.forEach(q => wrap.appendChild(renderQ(q)));
   });
   $("nome").value = cur.nome; $("cidade").value = cur.cidade; $("data").value = cur.data; $("notas").value = cur.notas;
-  updateProgress(); updatePersonal();
+  document.querySelectorAll("[data-rent]").forEach(i => i.value = cur.rent[i.dataset.rent] ?? "");
+  document.querySelectorAll("[data-prop]").forEach(i => i.value = cur.prop[i.dataset.prop] ?? "");
+  updateProgress(); updatePersonal(); renderRent(); renderRegiao();
 }
 
 function renderQ(q){
@@ -438,7 +591,58 @@ function updatePersonal(){
 
 ["nome","cidade","data","notas"].forEach(k => $(k).addEventListener("input", e => { cur[k] = e.target.value; if(k === "nome") updatePersonal(); save(); }));
 
-/* ---------- Tese ---------- */
+/* ---------- Região ---------- */
+function renderRegiao(){
+  const fn = firstName();
+  $("r-personal").textContent = fn ? `Apresentada a ${fn}.` : "";
+  const body = $("r-foryou-body"); body.innerHTML = "";
+  const items = [["O que você busca em um lugar", val(22)], ["O que é luxo para você", val(23)], ["O papel deste imóvel na sua vida", val(6)]].filter(([,c]) => c);
+  items.forEach(([t,c]) => {
+    const h = document.createElement("h4"); h.textContent = t;
+    const p = document.createElement("div"); p.className = "ans"; p.textContent = c;
+    body.append(h, p);
+  });
+  $("r-foryou").hidden = !items.length;
+}
+
+/* ---------- Rentabilidade ---------- */
+const brl = n => n.toLocaleString("pt-BR", {style:"currency", currency:"BRL", maximumFractionDigits:0});
+const pct = n => n.toLocaleString("pt-BR", {maximumFractionDigits:1}) + "%";
+function num(k){ const v = parseFloat(cur.rent[k]); return isFinite(v) ? v : NaN; }
+function simulate(ocupMul, valMul){
+  const valor = num("valor"), diaria = num("diaria"), ocup = num("ocup");
+  if(!(valor > 0 && diaria > 0 && ocup >= 0)) return null;
+  const uso = Math.min(Math.max(num("uso") || 0, 0), 365);
+  const adm = (num("adm") || 0) / 100, fixos = num("fixos") || 0;
+  const valoriz = ((num("valoriz") || 0) / 100) * valMul, horiz = Math.max(Math.round(num("horiz") || 10), 1);
+  const o = Math.min(ocup * ocupMul, 95) / 100;
+  const bruta = (365 - uso) * o * diaria;
+  const liq = bruta - bruta * adm - fixos * 12;
+  const proj = valor * Math.pow(1 + valoriz, horiz);
+  return {bruta, liq, yield: liq / valor * 100, mes: liq / 12, proj, total: (proj - valor) + liq * horiz, horiz, valor};
+}
+function renderRent(){
+  const fn = firstName();
+  $("rent-for").textContent = fn ? `Premissas definidas em conjunto com ${fn}, a partir da curadoria.` : "Premissas definidas em conjunto, a partir da sua curadoria.";
+  const b = simulate(1, 1);
+  const set = (id, v) => $(id).textContent = v;
+  if(!b){ ["o-bruta","o-liq","o-yield","o-mes","o-proj","o-total"].forEach(id => set(id, "—")); $("scen-body").innerHTML = '<tr><td colspan="4" class="muted" style="text-align:left">Preencha valor, diária e ocupação para ver a simulação.</td></tr>'; return; }
+  set("o-bruta", brl(b.bruta)); set("o-liq", brl(b.liq)); set("o-yield", pct(b.yield) + " a.a."); set("o-mes", brl(b.mes));
+  set("o-proj", brl(b.proj)); set("k-proj", `Valor do ativo em ${b.horiz} anos`); set("o-total", brl(b.total));
+  const s = [simulate(0.8, 0.5), b, simulate(1.15, 1.5)];
+  const rows = [["Resultado líquido anual", x => brl(x.liq)], ["Rentabilidade líquida", x => pct(x.yield) + " a.a."], [`Valor do ativo em ${b.horiz} anos`, x => brl(x.proj)], ["Ganho total no horizonte", x => brl(x.total)]];
+  const tb = $("scen-body"); tb.innerHTML = "";
+  rows.forEach(([label, f]) => {
+    const tr = document.createElement("tr");
+    const th = document.createElement("td"); th.textContent = label; tr.appendChild(th);
+    s.forEach((x, i) => { const td = document.createElement("td"); td.textContent = f(x); if(i === 1) td.className = "base"; tr.appendChild(td); });
+    tb.appendChild(tr);
+  });
+}
+document.querySelectorAll("[data-rent]").forEach(i => i.addEventListener("input", () => { cur.rent[i.dataset.rent] = i.value; renderRent(); save(); }));
+document.querySelectorAll("[data-prop]").forEach(i => i.addEventListener("input", () => { cur.prop[i.dataset.prop] = i.value; save(); }));
+
+/* ---------- Proposta ---------- */
 function fmtDate(s){ if(!s) return ""; const [y,m,d] = s.split("-"); return `${d}/${m}/${y}`; }
 function addSection(parent, title, content){
   const h = document.createElement("h4"); h.textContent = title; parent.appendChild(h);
@@ -494,6 +698,17 @@ function renderTese(){
     paths.appendChild(el);
   });
 
+  const offer = $("t-offer"); offer.innerHTML = "";
+  const p = cur.prop;
+  if(p.imovel) addSection(offer, "Imóvel proposto", p.imovel);
+  if(parseFloat(p.valor) > 0) addSection(offer, "Valor", brl(parseFloat(p.valor)));
+  if(p.condicoes && p.condicoes.trim()) addSection(offer, "Condições", p.condicoes.trim());
+  if(p.validade) addSection(offer, "Validade da proposta", fmtDate(p.validade));
+
+  const rent = $("t-rent"); rent.innerHTML = "";
+  const b = simulate(1, 1);
+  if(b) addSection(rent, "Simulação de rentabilidade (cenário base)", `Resultado líquido anual estimado de ${brl(b.liq)} (${pct(b.yield)} ao ano) e valor projetado do ativo de ${brl(b.proj)} em ${b.horiz} anos.\nSimulação ilustrativa, sem garantia de rentabilidade.`);
+
   const next = $("t-next"); next.innerHTML = "";
   const nd = cur.answers[30] && cur.answers[30].v;
   if(nd) addSection(next, "Próximo passo", `Nossa próxima conversa: ${fmtDate(nd)}${cur.answers[28] && cur.answers[28].v ? " · formato: " + cur.answers[28].v.toLowerCase() : ""}`);
@@ -518,7 +733,7 @@ function renderList(){
     const u = document.createElement("td"); u.className = "muted"; u.textContent = new Date(c.updated).toLocaleDateString("pt-BR");
     const act = document.createElement("td"); act.className = "act";
     const open = document.createElement("button"); open.className = "btn"; open.textContent = "Abrir";
-    open.onclick = () => { cur = c; writeLS(CUR_KEY, cur.id); renderForm(); showTab("curadoria"); };
+    open.onclick = () => { cur = norm(c); writeLS(CUR_KEY, cur.id); renderForm(); showTab("curadoria"); };
     const del = document.createElement("button"); del.className = "link"; del.textContent = "Excluir";
     del.onclick = () => {
       if(!confirm(`Excluir a curadoria de ${c.nome || "este cliente"}? Esta ação não pode ser desfeita.`)) return;
@@ -558,7 +773,9 @@ $("newClient").addEventListener("click", () => {
 function showTab(name){
   document.querySelectorAll(".tab-btn").forEach(b => b.setAttribute("aria-selected", b.dataset.tab === name));
   document.querySelectorAll(".tab").forEach(t => t.classList.toggle("active", t.id === "tab-" + name));
-  if(name === "tese") renderTese();
+  if(name === "proposta") renderTese();
+  if(name === "regiao") renderRegiao();
+  if(name === "rentabilidade") renderRent();
   if(name === "clientes") renderList();
 }
 document.querySelectorAll(".tab-btn").forEach(b => b.addEventListener("click", () => showTab(b.dataset.tab)));
