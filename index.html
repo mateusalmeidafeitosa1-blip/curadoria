@@ -199,6 +199,25 @@ textarea.note{min-height:52px;margin-top:10px}
 .list td.nm{font-family:var(--serif);font-size:20px}
 .list .act{text-align:right;white-space:nowrap}
 
+/* Números da região */
+.nums-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:10px;margin-bottom:18px}
+.nums{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.num{border:1px solid var(--line);border-radius:14px;padding:20px;background:#FFFEFB;display:flex;flex-direction:column;gap:6px}
+.num .v{font-family:var(--serif);font-size:38px;line-height:1;color:var(--accent)}
+.num .l{font-size:14px;line-height:1.4}
+.num .c{font-size:12px;color:var(--muted);line-height:1.4}
+.num .s{margin-top:auto;padding-top:8px;font-size:11px;color:var(--muted)}
+.num .s a{color:var(--muted)}
+.num .kind{align-self:flex-start;font-size:9px;letter-spacing:.16em;text-transform:uppercase;padding:3px 8px;border-radius:999px;background:var(--sand-soft);color:#8A6D3B}
+.rev{background:#16231d;color:#F5F1E8;border-color:#16231d}
+.rev .eyebrow{color:#E9D9B8}
+.rev .num{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.14)}
+.rev .num .v{color:#E9D9B8}
+.rev .num .c,.rev .num .s,.rev .num .s a{color:#B9C2BC}
+.why-inv{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:6px}
+.why-inv div{border-top:2px solid var(--sand);padding-top:10px;font-size:13px;line-height:1.45}
+.why-inv b{display:block;font-family:var(--serif);font-size:19px;font-weight:500;margin-bottom:4px}
+
 /* Sala imersiva */
 .sala{display:grid;grid-template-columns:1.5fr 1fr;gap:18px;align-items:start}
 .sala .card{margin:0}
@@ -254,7 +273,7 @@ select{border:0;background:transparent;padding:11px 4px;outline:none;font-size:1
 body.present .internal, body.present .star, body.present .hint, body.present .only-internal{display:none!important}
 
 @media (max-width:720px){
-  .region-grid,.products,.grid2,.stats,.sala{grid-template-columns:1fr}
+  .region-grid,.products,.grid2,.stats,.sala,.nums,.why-inv{grid-template-columns:1fr}
   .map.diagram{height:380px}
   .card{padding:20px}
   .cover-text{padding:32px 22px}
@@ -335,6 +354,33 @@ body.present .internal, body.present .star, body.present .hint, body.present .on
         <li>Os vídeos da capa são configurados em <b>Clientes e ajustes</b>. Sem vídeo, a capa usa um fundo nas cores da marca.</li>
         <li>Ative o <b>Modo apresentação</b> antes de compartilhar a tela.</li>
       </ul>
+    </div>
+
+    <div class="card">
+      <div class="nums-head">
+        <div><div class="eyebrow">A região em números</div><h2 class="sec-title">O que move a Rota dos Milagres</h2></div>
+        <div class="muted" style="font-size:12px">Dados públicos com fonte · compilados em out/2026</div>
+      </div>
+      <div class="nums" id="numsMain"></div>
+    </div>
+
+    <div class="card rev">
+      <div class="nums-head">
+        <div><div class="eyebrow">Réveillon</div><h2 class="sec-title">A semana mais disputada do ano</h2></div>
+      </div>
+      <div class="nums" id="numsRev"></div>
+    </div>
+
+    <div class="card">
+      <div class="eyebrow">Leitura para o investidor</div>
+      <h2 class="sec-title" style="margin-bottom:14px">Por que esses números importam</h2>
+      <div class="why-inv">
+        <div><b>Demanda em alta</b>Recorde de passageiros no aeroporto e forte crescimento do público internacional.</div>
+        <div><b>Oferta limitada</b>A APA Costa dos Corais restringe a ocupação e protege a raridade do lugar.</div>
+        <div><b>Valor acima da capital</b>O m² em São Miguel dos Milagres já supera o de Maceió.</div>
+        <div><b>Infraestrutura chegando</b>Duplicação da AL-101 Norte e aeroporto regional em obras.</div>
+      </div>
+      <p class="disclaimer">Dados de terceiros compilados de fontes públicas. Alguns são projeções ou foram informados por organizadores de eventos, como indicado em cada número. Não constituem promessa ou garantia de rentabilidade.</p>
     </div>
 
     <div class="region-grid">
@@ -726,6 +772,44 @@ function fitFrames(){
   $("coverMedia").querySelectorAll("iframe").forEach(f => { f.style.width = fw + "px"; f.style.height = fh + "px"; });
 }
 window.addEventListener("resize", fitFrames);
+
+/* ---------- Números da região (atualize aqui quando sair dado novo) ---------- */
+const SRC = {
+  tribuna: ["Tribuna Hoje, mai/2026", "https://tribunahoje.com/especial/2026/05/10/107-boom-do-turismo-expande-negocios-na-costa-dos-corais-alagoana"],
+  gazeta: ["Anac, via Gazeta de Alagoas, jan/2026", "https://www.gazetadealagoas.com.br/economia/866506/numero-de-passageiros-no-zumbi-dos-palmares-bate-recorde-e-some-145-milhao-em-2025"],
+  alnb: ["Setur-AL e Costa dos Corais CVB, via Alagoas Notícia Boa, dez/2025", "https://alnb.com.br/alagoas/alagoas-projeta-a-maior-alta-temporada-turistica-da-historia/"],
+  apa: ["Governo Federal, Decreto 12.490/2025, via TNH1", "https://www.tnh1.com.br/noticia/nid/apa-costa-dos-corais-e-ampliada-pelo-governo-federal-e-abrange-nove-cidades-de-al/"],
+  rdm: ["Organização do evento, via Portal Filipe Mello, out/2026", "https://www.portalfilipemello.com/2026/10/reveillon-dos-milagres-reune-musica.html"],
+  maragogi: ["Secretaria de Turismo de Maragogi, via Alagoas Notícia Boa", "https://alnb.com.br/municipios/maragogi-registra-98-de-ocupacao-hoteleira-para-o-reveillon-2026/"]
+};
+const NUMS_MAIN = [
+  {v:"R$ 2,6 bi", l:"injetados na economia de Alagoas na alta temporada 2025/26", c:"Até R$ 2,8 bi somando turistas por estrada. R$ 600 milhões a mais que na temporada anterior (Setur-AL).", s:"tribuna"},
+  {v:"1,45 mi", l:"passageiros no aeroporto de Maceió em 2025", c:"Recorde da série histórica, alta de 10,3% sobre 2024.", s:"gazeta"},
+  {v:"+64%", l:"passageiros internacionais na alta temporada 2025/26", c:"36.120 contra 22.003 na temporada anterior (Setur-AL).", s:"tribuna"},
+  {v:"85–100%", l:"ocupação no Litoral Norte na alta temporada", c:"Projeção da Costa dos Corais CVB. Média estadual projetada pela ABIH-AL: 90%.", s:"alnb", kind:"Projeção"},
+  {v:"R$ 11.181", l:"por m² em São Miguel dos Milagres", c:"Acima de Maceió (R$ 9.653/m², FipeZAP). Levantamento da Brain Consultoria.", s:"tribuna"},
+  {v:"R$ 268 mi", l:"em crédito do BNB para empresas da Costa Norte em 2025", c:"Contra R$ 20 milhões em 2024. Sinal de novos negócios chegando à região.", s:"tribuna"},
+  {v:"+158%", l:"leitos de hospedagem em Alagoas entre 2015 e 2024", c:"12 novos hotéis previstos para 2026, com mais de 3.200 leitos (Setur-AL).", s:"alnb"},
+  {v:"R$ 412 mi", l:"na duplicação da AL-101 Norte", c:"Somada ao aeroporto regional de Maragogi, em obras (cerca de R$ 371 mi): quase R$ 800 mi em infraestrutura.", s:"tribuna"},
+  {v:"495 mil ha", l:"de área protegida na APA Costa dos Corais", c:"Ampliada em 2025. Cerca de 120 km de costa, a maior unidade de conservação marinha costeira federal do país.", s:"apa"}
+];
+const NUMS_REV = [
+  {v:"R$ 200 mi", l:"movimentados por ano pelo Réveillon dos Milagres e eventos do grupo", c:"Mais de 20 mil visitantes por ano na Rota Ecológica.", s:"rdm", kind:"Dado da organização"},
+  {v:"até R$ 11 mil", l:"por diária no Réveillon em pousadas e casas de luxo da região", c:"Pacotes de quatro noites podem chegar a cerca de R$ 50 mil.", s:"tribuna"},
+  {v:"98%", l:"de ocupação no Réveillon 2026 em Maragogi, destino vizinho", c:"Termômetro da demanda no litoral norte de Alagoas na virada.", s:"maragogi"}
+];
+function renderNums(id, list){
+  const box = $(id); box.innerHTML = "";
+  list.forEach(n => {
+    const d = document.createElement("div"); d.className = "num";
+    if(n.kind){ const k = document.createElement("span"); k.className = "kind"; k.textContent = n.kind; d.appendChild(k); }
+    [["v", n.v], ["l", n.l], ["c", n.c]].forEach(([cls, t]) => { const e = document.createElement("div"); e.className = cls; e.textContent = t; d.appendChild(e); });
+    const s = document.createElement("div"); s.className = "s"; const [name, url] = SRC[n.s];
+    s.appendChild(document.createTextNode("Fonte: ")); const a = document.createElement("a"); a.href = url; a.target = "_blank"; a.rel = "noopener"; a.textContent = name; s.appendChild(a);
+    d.appendChild(s); box.appendChild(d);
+  });
+}
+renderNums("numsMain", NUMS_MAIN); renderNums("numsRev", NUMS_REV);
 
 /* ---------- Região ---------- */
 function renderRegiao(){
