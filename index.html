@@ -822,6 +822,11 @@ function fitFrames(){
   $("coverMedia").querySelectorAll("iframe").forEach(f => { f.style.width = fw + "px"; f.style.height = fh + "px"; });
 }
 window.addEventListener("resize", fitFrames);
+document.addEventListener("visibilitychange", () => {
+  if(document.hidden) return;
+  const s = $("coverMedia").children[coverIdx]; const v = s && s.querySelector("video");
+  if(v && v.paused) v.play().catch(() => {});
+});
 
 /* ---------- Números da região (atualize aqui quando sair dado novo) ---------- */
 const SRC = {
