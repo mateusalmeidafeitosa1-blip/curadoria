@@ -692,7 +692,8 @@ body.present .internal, body.present .star, body.present .hint, body.present .on
 
 <script>
 const FORM_URL = "https://mateusalmeidafeitosa1-blip.github.io/curadoria/formulario.html";
-const DEFAULT_VIDEOS = [];
+const VIDEO_BASE = "https://mateusalmeidafeitosa1-blip.github.io/curadoria/";
+const DEFAULT_VIDEOS = ["capa-1.mp4", "capa-2.mp4", "capa-3.mp4", "capa-4.mp4"].map(f => VIDEO_BASE + f);
 
 const BLOCKS = [
   {t:"Contexto", s:"O momento e o caminho até aqui", q:[
@@ -783,7 +784,7 @@ function parseVideo(u){
   if(m) return {kind:"frame", src:`https://www.youtube.com/embed/${m[1]}?autoplay=1&mute=1&loop=1&playlist=${m[1]}&controls=0&modestbranding=1&playsinline=1&rel=0`};
   m = u.match(/vimeo\.com\/(?:video\/)?(\d+)/);
   if(m) return {kind:"frame", src:`https://player.vimeo.com/video/${m[1]}?background=1&autoplay=1&loop=1&muted=1`};
-  if(/^https?:\/\//.test(u)) return {kind:"video", src:u};
+  if(/^https?:\/\//.test(u) || /\.(mp4|webm|mov)(\?|$)/i.test(u)) return {kind:"video", src:u};
   return null;
 }
 let coverTimer, coverIdx = 0;
@@ -794,17 +795,26 @@ function buildCover(){
   vids.forEach((v, i) => {
     const s = document.createElement("div"); s.className = "slide" + (i === 0 ? " on" : "");
     if(v.kind === "frame"){ const f = document.createElement("iframe"); f.src = v.src; f.allow = "autoplay; encrypted-media; picture-in-picture"; f.title = "Vídeo da região"; s.appendChild(f); }
-    else { const el = document.createElement("video"); el.src = v.src; el.autoplay = true; el.muted = true; el.loop = true; el.playsInline = true; el.setAttribute("playsinline",""); s.appendChild(el); }
+    else {
+      const el = document.createElement("video"); el.src = v.src; el.muted = true; el.playsInline = true; el.setAttribute("playsinline", "");
+      el.preload = i < 2 ? "auto" : "metadata"; el.loop = vids.length === 1; el.autoplay = i === 0;
+      el.addEventListener("ended", () => showSlide((i + 1) % vids.length));
+      s.appendChild(el);
+    }
     media.appendChild(s);
-    if(vids.length > 1){ const d = document.createElement("button"); d.className = i === 0 ? "on" : ""; d.setAttribute("aria-label", `Vídeo ${i+1}`); d.onclick = () => showSlide(i); dots.appendChild(d); }
   });
   coverIdx = 0; fitFrames();
-  if(vids.length > 1) coverTimer = setInterval(() => showSlide((coverIdx + 1) % vids.length), 25000);
+  // Vídeos .mp4 passam em sequência (cada um até o fim); YouTube/Vimeo trocam a cada 25 s.
+  if(vids.length > 1 && vids.some(v => v.kind === "frame")) coverTimer = setInterval(() => { const cur = vids[coverIdx]; if(cur.kind === "frame") showSlide((coverIdx + 1) % vids.length); }, 25000);
 }
 function showSlide(i){
   coverIdx = i;
-  $("coverMedia").querySelectorAll(".slide").forEach((s, k) => s.classList.toggle("on", k === i));
-  $("coverDots").querySelectorAll("button").forEach((d, k) => d.classList.toggle("on", k === i));
+  $("coverMedia").querySelectorAll(".slide").forEach((s, k) => {
+    s.classList.toggle("on", k === i);
+    const v = s.querySelector("video"); if(!v) return;
+    if(k === i){ v.currentTime = 0; v.play().catch(() => {}); }
+    else if(k === (i + 1) % $("coverMedia").children.length){ v.preload = "auto"; }
+  });
 }
 function fitFrames(){
   const box = $("cover"); const w = box.clientWidth, h = box.clientHeight;
