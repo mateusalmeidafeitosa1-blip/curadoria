@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Curadoria Privada · Mateus Almeida</title>
+<title>Curadoria Personalizada · Mateus Almeida</title>
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,500;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#111110; --paper:#1B1A18; --ink:#EEE9E0; --muted:#9C978D; --line:rgba(255,255,255,.12);
@@ -24,9 +24,13 @@ button{cursor:pointer}
 [hidden]{display:none!important}
 .top{background:rgba(17,17,16,.85);border-bottom:1px solid var(--line)}
 .top-in{max-width:720px;margin:0 auto;padding:18px 20px;display:flex;align-items:center;gap:14px}
-.mono{width:42px;height:42px;border:1px solid var(--sand);border-radius:50%;display:grid;place-items:center;font-family:var(--serif);font-size:18px;color:var(--accent)}
-.name{font-family:var(--serif);font-size:20px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;line-height:1.1}
-.sub{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.brand{display:flex;align-items:center;gap:14px;margin-right:auto;color:var(--ink)}
+.brand .mono{width:46px;height:46px;color:var(--accent);flex:none;border:0;border-radius:0}
+.brand-text{display:flex;flex-direction:column;align-items:center;gap:6px}
+.brand .name{font-family:"Bodoni Moda","Didot","Bodoni 72",var(--serif);font-weight:400;font-size:19px;letter-spacing:.34em;text-transform:uppercase;line-height:1;margin-right:-.34em;white-space:nowrap}
+.brand .sub{display:flex;align-items:center;gap:9px;font-family:var(--sans);font-size:8.5px;font-weight:400;letter-spacing:.4em;text-transform:uppercase;color:var(--accent);margin-right:-.4em;white-space:nowrap}
+.brand .sub i{display:block;width:18px;height:1px;background:currentColor;opacity:.55}
+@media (max-width:520px){.brand .name{font-size:15px;letter-spacing:.24em;margin-right:-.24em}.brand .sub{font-size:7.5px;letter-spacing:.3em}.brand .sub i{width:10px}.brand .mono{width:40px;height:40px}}
 main{max-width:720px;margin:0 auto;padding:24px 20px 80px}
 .card{background:var(--paper);border:1px solid var(--line);border-radius:22px;padding:32px;margin-bottom:16px}
 .eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--sand);font-weight:500}
@@ -68,7 +72,10 @@ textarea:focus,.text-in:focus{border-color:var(--sand);box-shadow:0 0 0 3px var(
 </style>
 </head>
 <body>
-<header class="top"><div class="top-in"><div class="mono">MA</div><div><div class="name">Mateus Almeida</div><div class="sub">Curadoria Privada · Rota Ecológica dos Milagres</div></div></div></header>
+<header class="top"><div class="top-in"><div class="brand" aria-label="Mateus Almeida · Curadoria Personalizada">
+      <svg class="mono" viewBox="0 0 56 56" aria-hidden="true"><rect x=".5" y=".5" width="55" height="55" fill="none" stroke="currentColor" stroke-width=".7"/><rect x="4" y="4" width="48" height="48" fill="none" stroke="currentColor" stroke-width=".35"/><text x="28" y="37" text-anchor="middle" font-family="Bodoni Moda, Didot, Bodoni 72, serif" font-size="25" fill="currentColor">M<tspan font-style="italic" dx="-3.5">A</tspan></text></svg>
+      <div class="brand-text"><div class="name">Mateus Almeida</div><div class="sub"><i></i>Curadoria Personalizada<i></i></div></div>
+    </div></div></header>
 
 <main>
   <section id="intro">
@@ -159,7 +166,7 @@ const first = () => (state.n || "").trim().split(/\s+/)[0];
 function paintIntro(){
   $("hello").textContent = first() ? `Curadoria personalizada para ${first()}` : "Antes da nossa conversa";
   $("clientName").value = state.n;
-  document.title = first() ? `Curadoria · ${state.n}` : "Curadoria Privada · Mateus Almeida";
+  document.title = first() ? `Curadoria · ${state.n}` : "Curadoria Personalizada · Mateus Almeida";
 }
 $("clientName").oninput = e => { state.n = e.target.value; writeLS(DRAFT, state); paintIntro(); };
 $("start").onclick = () => { $("intro").hidden = true; $("steps").hidden = false; renderStep(); window.scrollTo(0, 0); };

@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Curadoria Privada · Mateus Almeida</title>
+<title>Curadoria Personalizada · Mateus Almeida</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,500;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#111110; --paper:#1B1A18; --paper-2:#22211E; --ink:#EEE9E0; --muted:#9C978D; --line:rgba(255,255,255,.08); --line-2:rgba(255,255,255,.14);
@@ -30,10 +30,13 @@ a{color:var(--accent)}
 /* Header */
 .top{position:sticky;top:0;z-index:10;background:rgba(17,17,16,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
 .top-in{max-width:1180px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
-.brand{display:flex;align-items:center;gap:12px;margin-right:auto}
-.mono{width:40px;height:40px;border:1px solid var(--accent);border-radius:50%;display:grid;place-items:center;font-family:var(--serif);font-size:17px;letter-spacing:.06em;color:var(--accent)}
-.brand .name{font-family:var(--serif);font-size:20px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;line-height:1.1}
-.brand .sub{font-size:9.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
+.brand{display:flex;align-items:center;gap:14px;margin-right:auto;color:var(--ink)}
+.brand .mono{width:46px;height:46px;color:var(--accent);flex:none;border:0;border-radius:0}
+.brand-text{display:flex;flex-direction:column;align-items:center;gap:6px}
+.brand .name{font-family:"Bodoni Moda","Didot","Bodoni 72",var(--serif);font-weight:400;font-size:19px;letter-spacing:.34em;text-transform:uppercase;line-height:1;margin-right:-.34em;white-space:nowrap}
+.brand .sub{display:flex;align-items:center;gap:9px;font-family:var(--sans);font-size:8.5px;font-weight:400;letter-spacing:.4em;text-transform:uppercase;color:var(--accent);margin-right:-.4em;white-space:nowrap}
+.brand .sub i{display:block;width:18px;height:1px;background:currentColor;opacity:.55}
+@media (max-width:520px){.brand .name{font-size:15px;letter-spacing:.24em;margin-right:-.24em}.brand .sub{font-size:7.5px;letter-spacing:.3em}.brand .sub i{width:10px}.brand .mono{width:40px;height:40px}}
 .tabs{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;padding:4px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.03)}
 .tabs::-webkit-scrollbar{display:none}
 .tab-btn{background:none;border:0;padding:8px 15px;font-size:12.5px;letter-spacing:.02em;color:var(--muted);border-radius:999px;white-space:nowrap;transition:background .2s,color .2s}
@@ -337,12 +340,9 @@ body.present .internal, body.present .star, body.present .hint, body.present .on
 
 <header class="top">
   <div class="top-in">
-    <div class="brand">
-      <div class="mono">MA</div>
-      <div>
-        <div class="name">Mateus Almeida</div>
-        <div class="sub">Curadoria Privada · Rota Ecológica dos Milagres</div>
-      </div>
+    <div class="brand" aria-label="Mateus Almeida · Curadoria Personalizada">
+      <svg class="mono" viewBox="0 0 56 56" aria-hidden="true"><rect x=".5" y=".5" width="55" height="55" fill="none" stroke="currentColor" stroke-width=".7"/><rect x="4" y="4" width="48" height="48" fill="none" stroke="currentColor" stroke-width=".35"/><text x="28" y="37" text-anchor="middle" font-family="Bodoni Moda, Didot, Bodoni 72, serif" font-size="25" fill="currentColor">M<tspan font-style="italic" dx="-3.5">A</tspan></text></svg>
+      <div class="brand-text"><div class="name">Mateus Almeida</div><div class="sub"><i></i>Curadoria Personalizada<i></i></div></div>
     </div>
     <nav class="tabs" role="tablist">
       <button class="tab-btn" data-tab="regiao" aria-selected="true">Início</button>
@@ -597,7 +597,7 @@ body.present .internal, body.present .star, body.present .hint, body.present .on
         <div class="eyebrow">Proposta de investimento</div>
         <h2 id="t-nome">—</h2>
         <div class="for" id="t-for">Curadoria preparada exclusivamente para você</div>
-        <div class="sig">Mateus Almeida · Curadoria Privada · Rota Ecológica dos Milagres</div>
+        <div class="sig">Mateus Almeida · Curadoria Personalizada · Rota Ecológica dos Milagres</div>
       </div>
       <div id="t-heard"></div>
       <h4>A sua tese</h4>
@@ -775,7 +775,7 @@ function renderCover(){
   $("coverName").textContent = nm || "Rota Ecológica dos Milagres";
   $("coverSub").textContent = nm ? "Rota Ecológica dos Milagres · Alagoas" : "Alagoas · Brasil";
   $("pillName").textContent = nm || "sem nome";
-  document.title = nm ? `Curadoria · ${nm}` : "Curadoria Privada · Mateus Almeida";
+  document.title = nm ? `Curadoria · ${nm}` : "Curadoria Personalizada · Mateus Almeida";
 }
 function videoList(){ const own = settings.videos.split(/\n+/).map(s => s.trim()).filter(Boolean); return own.length ? own : DEFAULT_VIDEOS; }
 function parseVideo(u){
